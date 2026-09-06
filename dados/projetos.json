@@ -1,1 +1,401 @@
-
+[
+  {
+    "id": "butter-robot-pepi",
+    "nome": "Butter Robot do Pepi",
+    "categoria": "Robótica",
+    "status": "Planejamento",
+    "autor": "Pepi",
+    "inspiracao": {
+      "principal": "Butter Robot de Rick and Morty",
+      "objetivo_visual": "Criar um robô possível de construir na vida real, com aparência inspirada no Butter Robot, mas adaptado para materiais acessíveis e construção caseira."
+    },
+    "objetivo": "Construir um robô de bancada que segure uma pequena faca ou espátula, raspe uma quantidade programada de manteiga e depois permita que o usuário retire a faca com a manteiga para passar manualmente no pão.",
+    "funcionamento": {
+      "resumo": "O robô não passa a manteiga no pão. Ele apenas raspa a manteiga e entrega a faca ao usuário.",
+      "sequencia": [
+        "O robô começa segurando a faquinha.",
+        "O usuário aciona o comando de início.",
+        "O braço realiza o movimento programado para raspar a manteiga.",
+        "O robô para após executar a quantidade de movimento definida.",
+        "A faca permanece presa ao mecanismo do braço.",
+        "O usuário aperta o botão de liberação.",
+        "O mecanismo abre e solta a faca.",
+        "O usuário pega a faca com a manteiga raspada.",
+        "O usuário passa a manteiga no pão manualmente."
+      ],
+      "controle_de_quantidade": {
+        "versao_inicial": "Por movimento programado.",
+        "ideia": "Calibrar na prática uma quantidade de manteiga por distância, tempo ou número de passadas.",
+        "possibilidades_futuras": [
+          "Por tempo",
+          "Por posição do braço",
+          "Por número de passadas",
+          "Por sensor de força ou peso"
+        ]
+      }
+    },
+    "decisoes": {
+      "ia": "Não será usada na V1. O robô funcionará por programação convencional.",
+      "camera": "Não necessária na V1.",
+      "raspagem": "O próprio robô raspa a manteiga.",
+      "aplicacao_no_pao": "Manual, feita pelo usuário após retirar a faca.",
+      "liberacao_da_faca": "Feita por botão dedicado.",
+      "soldagem": "A montagem definitiva deverá usar solda. Pepi quer aprender soldagem eletrônica como parte do projeto.",
+      "mobilidade": "A primeira versão será um robô de bancada, sem necessidade de esteiras motorizadas.",
+      "orcamento": {
+        "minimo_desejado_reais": 250,
+        "maximo_reais": 350,
+        "regra": "R$ 350 é o teto. O projeto deve priorizar componentes necessários e baratos."
+      }
+    },
+    "design": {
+      "conceito": "Visual inspirado em um pequeno robô industrial/cartunesco, semelhante ao Butter Robot.",
+      "elementos_planejados": [
+        "Cabeça ou corpo superior em formato de caixa",
+        "Olho ou detalhe frontal circular",
+        "Pescoço ou coluna central",
+        "Braço articulado lateral",
+        "Articulações aparentes",
+        "Base de bancada",
+        "Detalhes com fios aparentes",
+        "LED vermelho decorativo",
+        "Acabamento cinza, grafite e preto"
+      ],
+      "base": {
+        "ideia_desenhada": "Base com ventosas para fixação.",
+        "observacao": "Ventosas devem ser testadas porque funcionam melhor em superfícies lisas. Pode ser usada borracha antiderrapante como alternativa ou complemento."
+      },
+      "pescoco": {
+        "ideia": "Pescoço giratório em camadas, possivelmente movimentado por servo.",
+        "status": "Opcional para a primeira versão funcional."
+      },
+      "braco": {
+        "estrutura": "Braço articulado com ombro, cotovelo e mecanismo terminal para segurar a faca.",
+        "movimentos": "O número exato de articulações ainda será definido após o desenho mecânico.",
+        "requisito": "Deve ter rigidez suficiente para raspar manteiga sem deformar ou perder posição."
+      },
+      "garra": {
+        "funcao": "Segurar e soltar especificamente a faquinha.",
+        "conceito": "Não precisa ser uma mão robótica genérica. Pode ser uma garra simples feita para o formato do cabo da faca.",
+        "acionamento": "Servo pequeno acionado pelo botão de liberação."
+      }
+    },
+    "forcas_e_mecanica": {
+      "anotacao_inicial": {
+        "valor": 2250,
+        "unidade": "gramas-força",
+        "equivalente_aproximado_newtons": 22.1
+      },
+      "observacao": "Esse valor surgiu durante os estudos iniciais de força. Como a função final mudou e o robô não precisa passar manteiga no pão, a força realmente necessária para raspar manteiga deve ser medida ou estimada novamente.",
+      "torque": "Os servos finais não devem ser escolhidos apenas pelo valor nominal em kg.cm. É necessário considerar comprimento do braço, geometria, peso próprio e força de raspagem.",
+      "pendencia": "Calcular torque depois que as dimensões do braço forem definidas."
+    },
+    "eletronica": {
+      "controlador_principal": {
+        "componente": "ESP32 DevKit V1 / ESP-WROOM-32",
+        "status": "Preferido"
+      },
+      "servos": {
+        "candidatos": [
+          {
+            "modelo": "MG996R",
+            "uso": "Articulações médias ou testes",
+            "status": "Candidato provisório"
+          },
+          {
+            "modelo": "DS3218 20 kg.cm ou equivalente",
+            "uso": "Articulações que exigem maior torque",
+            "status": "Candidato"
+          },
+          {
+            "modelo": "MG90S",
+            "uso": "Mecanismo leve, como prender ou soltar a faca",
+            "status": "Candidato adequado"
+          }
+        ],
+        "observacao": "A seleção definitiva depende do cálculo do braço."
+      },
+      "controle_de_servos": {
+        "componente": "PCA9685",
+        "status": "Opcional",
+        "observacao": "Pode ser desnecessário se a V1 usar poucos servos, pois o ESP32 pode controlar diretamente alguns deles."
+      },
+      "botoes": [
+        {
+          "nome": "Iniciar",
+          "funcao": "Executar a sequência de raspagem."
+        },
+        {
+          "nome": "Liberar faca",
+          "funcao": "Abrir o mecanismo de retenção da faca."
+        }
+      ],
+      "alimentacao": {
+        "prototipo": "Fonte externa é recomendada nos primeiros testes.",
+        "versao_final": "Pode usar bateria recarregável.",
+        "observacoes": [
+          "Evitar alimentar servos fortes diretamente pelo ESP32.",
+          "A alimentação deve suportar os picos de corrente dos servos.",
+          "Pilhas AA comuns podem não ser adequadas para servos de alto torque."
+        ]
+      },
+      "sensores": {
+        "celula_de_carga_5kg": {
+          "status": "Não necessária na V1",
+          "uso_futuro": "Medir força ou auxiliar em controle de quantidade."
+        },
+        "hx711": {
+          "status": "Não necessário na V1",
+          "uso_futuro": "Leitura de célula de carga."
+        }
+      },
+      "camera": {
+        "status": "Removida da V1",
+        "motivo": "Não há necessidade de visão computacional para a sequência programada."
+      }
+    },
+    "componentes_planejados": [
+      "ESP32 DevKit V1",
+      "Servos para as articulações do braço",
+      "Microservo para segurar ou liberar a faca",
+      "Dois botões",
+      "Fonte ou sistema de bateria adequado",
+      "Chave liga/desliga",
+      "Fios flexíveis",
+      "Conectores",
+      "Parafusos M3",
+      "Porcas",
+      "Arruelas",
+      "Possíveis rolamentos ou buchas nas articulações",
+      "Espátula ou pequena faca sem ponta adequada ao protótipo"
+    ],
+    "soldagem_e_ferramentas": {
+      "objetivo": "Aprender e usar soldagem eletrônica na montagem definitiva.",
+      "materiais": [
+        "Ferro de solda de aproximadamente 40 a 60 W, preferencialmente com controle de temperatura",
+        "Estanho fino para eletrônica, aproximadamente 0,5 a 0,8 mm",
+        "Fluxo próprio para eletrônica",
+        "Suporte para ferro de solda",
+        "Esponja de latão ou limpador de ponta",
+        "Sugador de solda ou malha dessoldadora",
+        "Alicate de corte",
+        "Desencapador de fios",
+        "Tubos termo-retráteis",
+        "Placa ilhada ou perfurada para montagem definitiva"
+      ],
+      "aprendizados_planejados": [
+        "Estanhar fios",
+        "Soldar pinos em placas",
+        "Reconhecer solda boa e solda fria",
+        "Usar termo-retrátil",
+        "Dessoldar componentes",
+        "Evitar superaquecimento de placas e trilhas"
+      ]
+    },
+    "materiais_esteticos": {
+      "prioridade": "Acessíveis, fáceis de trabalhar e bonitos.",
+      "opcoes": [
+        {
+          "material": "PVC expandido de 2 a 3 mm",
+          "uso": "Corpo, cabeça e partes planas",
+          "vantagem": "Plástico leve, cortável, lixável e pintável."
+        },
+        {
+          "material": "Papel Paraná ou papelão cinza rígido",
+          "uso": "Protótipos, carcaça e peças de baixo esforço",
+          "vantagem": "Muito barato e pode ficar bonito após acabamento."
+        },
+        {
+          "material": "EVA de 3 a 5 mm",
+          "uso": "Detalhes, revestimentos e peças decorativas"
+        },
+        {
+          "material": "Tubos ou perfis de PVC",
+          "uso": "Braços, coluna e partes alongadas"
+        },
+        {
+          "material": "MDF fino",
+          "uso": "Base ou reforços estruturais"
+        },
+        {
+          "material": "Borracha antiderrapante",
+          "uso": "Base"
+        },
+        {
+          "material": "Ventosas",
+          "uso": "Fixação experimental à bancada"
+        }
+      ],
+      "acabamento": [
+        "Massa para corrigir emendas",
+        "Lixa",
+        "Primer",
+        "Tinta spray cinza ou prata fosca",
+        "Tinta grafite ou preta fosca",
+        "Verniz fosco opcional"
+      ],
+      "detalhes_visuais": [
+        "Fios amarelos e vermelhos aparentes",
+        "Parafusos e arruelas visíveis",
+        "LED vermelho",
+        "Elemento frontal semelhante a uma lente"
+      ],
+      "regra_estrutural": "Materiais decorativos não devem receber sozinhos os esforços principais do braço. Eixos, suportes de servo e articulações precisam de estrutura rígida."
+    },
+    "etapas_do_projeto": [
+      {
+        "etapa": 1,
+        "nome": "Definição funcional",
+        "status": "Concluída",
+        "descricao": "Definir exatamente o que o robô faz e o que não faz."
+      },
+      {
+        "etapa": 2,
+        "nome": "Desenho conceitual",
+        "status": "Em andamento",
+        "descricao": "Criar desenhos do corpo, base, pescoço, braço e mecanismo da faca."
+      },
+      {
+        "etapa": 3,
+        "nome": "Dimensionamento",
+        "status": "Pendente",
+        "descricao": "Definir altura do robô, comprimentos do braço e alcance necessário."
+      },
+      {
+        "etapa": 4,
+        "nome": "Cálculo mecânico",
+        "status": "Pendente",
+        "descricao": "Estimar força de raspagem e calcular torque necessário em cada articulação."
+      },
+      {
+        "etapa": 5,
+        "nome": "Escolha dos componentes",
+        "status": "Pendente",
+        "descricao": "Escolher os servos, alimentação, botões e componentes definitivos dentro do orçamento."
+      },
+      {
+        "etapa": 6,
+        "nome": "Protótipo de uma articulação",
+        "status": "Pendente",
+        "descricao": "Aprender a controlar um servo com ESP32 e testar uma única articulação."
+      },
+      {
+        "etapa": 7,
+        "nome": "Protótipo do braço",
+        "status": "Pendente",
+        "descricao": "Montar e testar as articulações e o mecanismo de prender a faca."
+      },
+      {
+        "etapa": 8,
+        "nome": "Programação do ciclo",
+        "status": "Pendente",
+        "descricao": "Programar início, raspagem, parada e liberação da faca."
+      },
+      {
+        "etapa": 9,
+        "nome": "Calibração da manteiga",
+        "status": "Pendente",
+        "descricao": "Experimentar distância, velocidade e número de passadas até obter porções repetíveis."
+      },
+      {
+        "etapa": 10,
+        "nome": "Montagem definitiva",
+        "status": "Pendente",
+        "descricao": "Soldar e organizar a eletrônica, construir a estrutura rígida e fazer a carcaça."
+      },
+      {
+        "etapa": 11,
+        "nome": "Acabamento",
+        "status": "Pendente",
+        "descricao": "Lixar, aplicar primer, pintar e adicionar detalhes visuais."
+      },
+      {
+        "etapa": 12,
+        "nome": "Testes finais",
+        "status": "Pendente",
+        "descricao": "Testar repetibilidade, segurança, estabilidade da base e facilidade para retirar a faca."
+      }
+    ],
+    "ideias_futuras": [
+      "Adicionar mais opções de tamanho de porção.",
+      "Adicionar botão ou seletor para pequena, média e grande.",
+      "Adicionar sensor de força.",
+      "Adicionar célula de carga.",
+      "Adicionar pescoço móvel.",
+      "Adicionar câmera.",
+      "Adicionar reconhecimento de objetos.",
+      "Integrar uma IA no futuro, caso haja utilidade real.",
+      "Construir outros projetos possíveis inspirados em invenções de Rick and Morty."
+    ],
+    "imagens_e_rascunhos": {
+      "existem": true,
+      "descricao": [
+        "Imagem de referência visual do Butter Robot.",
+        "Desenhos feitos por Pepi mostrando o robô, base, pescoço, braço e ideias mecânicas.",
+        "Capturas de tela de componentes considerados durante a pesquisa, incluindo ESP32, servos, PCA9685, célula de carga, HX711, câmera e conversor."
+      ],
+      "observacao": "As imagens foram enviadas na conversa e ainda não foram adicionadas como arquivos ao repositório."
+    },
+    "componentes_pesquisados_e_decisoes": [
+      {
+        "componente": "ESP32 DevKit / ESP-WROOM-32",
+        "decisao": "Adequado"
+      },
+      {
+        "componente": "MG996R",
+        "decisao": "Pode servir para testes ou articulações menos exigentes, mas não escolher como servo final do ombro antes do cálculo de torque."
+      },
+      {
+        "componente": "MG90S",
+        "decisao": "Adequado para mecanismo leve de liberação da faca."
+      },
+      {
+        "componente": "PCA9685",
+        "decisao": "Opcional. Confirmar necessidade após definir quantidade de servos."
+      },
+      {
+        "componente": "Célula de carga 5 kg",
+        "decisao": "Capacidade adequada para experimentos, mas removida da lista essencial da V1."
+      },
+      {
+        "componente": "HX711",
+        "decisao": "Somente necessário se a célula de carga for utilizada."
+      },
+      {
+        "componente": "OV7670",
+        "decisao": "Não comprar para a V1."
+      },
+      {
+        "componente": "XL6009",
+        "decisao": "Não comprar sem uma necessidade de alimentação definida."
+      },
+      {
+        "componente": "Interruptor liga/desliga",
+        "decisao": "Útil na montagem final."
+      }
+    ],
+    "criterios_de_sucesso": [
+      "Raspar manteiga de forma repetível.",
+      "Parar sempre numa posição segura.",
+      "Segurar a faca sem deixá-la cair durante o movimento.",
+      "Liberar a faca somente quando o botão for acionado.",
+      "Permanecer estável sobre a bancada.",
+      "Cabos e articulações não se soltarem durante o uso.",
+      "Ficar dentro do orçamento máximo de R$ 350.",
+      "Ter aparência bonita e coerente com a inspiração."
+    ],
+    "pendencias": [
+      "Definir medidas finais.",
+      "Definir quantidade exata de articulações.",
+      "Medir ou estimar força real necessária para raspar a manteiga.",
+      "Calcular torque de cada articulação.",
+      "Escolher modelos definitivos dos servos.",
+      "Definir sistema de alimentação.",
+      "Escolher formato exato da faquinha.",
+      "Projetar mecanismo da garra.",
+      "Escolher material estrutural definitivo.",
+      "Fazer lista final de compras com preços atuais.",
+      "Decidir se os rascunhos e imagens serão adicionados ao repositório."
+    ]
+  }
+]
