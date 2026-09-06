@@ -3,72 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Arquivo de Projetos</title>
+  <title>Minha Oficina</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header>
+
+<body class="pagina-inicial">
+  <header class="cabecalho">
     <div>
       <p class="etiqueta">ARQUIVO PESSOAL</p>
       <h1>Minha Oficina</h1>
+      <p class="subtitulo">
+        Um lugar para guardar projetos, jogos e edições do jornal.
+      </p>
     </div>
-
-    <button id="abrir-formulario">+ Novo projeto</button>
   </header>
 
-  <nav>
-    <button class="aba ativa" data-secao="projetos">Projetos</button>
-    <button class="aba" data-secao="jogos">Jogos</button>
-    <button class="aba" data-secao="jornal">Jornal</button>
-  </nav>
+  <main class="conteudo">
+    <section>
+      <div class="titulo-secao">
+        <div>
+          <p class="numero-arquivo">ARQUIVO Nº 001</p>
+          <h2>Escolha uma pasta</h2>
+        </div>
+      </div>
 
-  <main>
-    <section id="projetos" class="secao ativa">
-      <h2>Projetos</h2>
-      <div id="lista-projetos" class="grade"></div>
-    </section>
+      <div class="grade-pastas">
+        <a class="pasta pasta-projetos" href="projetos.html">
+          <span class="aba-pasta">OFICINA</span>
 
-    <section id="jogos" class="secao">
-      <h2>Jogos</h2>
-      <div id="lista-jogos" class="grade"></div>
-    </section>
+          <div class="papel-interno">
+            <span class="icone">⚙</span>
+            <h3>Projetos</h3>
+            <p>Ideias, planejamentos, imagens e progresso.</p>
+          </div>
+        </a>
 
-    <section id="jornal" class="secao">
-      <h2>Jornal</h2>
-      <div id="lista-jornal" class="grade"></div>
+        <a class="pasta pasta-jogos" href="jogos.html">
+          <span class="aba-pasta">ARCADE</span>
+
+          <div class="papel-interno">
+            <span class="icone">♟</span>
+            <h3>Jogos</h3>
+            <p>Jogos, experiências e protótipos.</p>
+          </div>
+        </a>
+
+        <a class="pasta pasta-jornal" href="jornal.html">
+          <span class="aba-pasta">IMPRENSA</span>
+
+          <div class="papel-interno">
+            <span class="icone">✎</span>
+            <h3>Jornal</h3>
+            <p>Matérias, rascunhos e edições publicadas.</p>
+          </div>
+        </a>
+      </div>
     </section>
   </main>
 
-  <dialog id="formulario-projeto">
-    <form id="novo-projeto">
-      <button type="button" id="fechar-formulario" class="fechar">×</button>
-
-      <h2>Novo projeto</h2>
-
-      <label>
-        Nome
-        <input id="nome-projeto" type="text" required>
-      </label>
-
-      <label>
-        Descrição
-        <textarea id="descricao-projeto" rows="4"></textarea>
-      </label>
-
-      <label>
-        Status
-        <select id="status-projeto">
-          <option value="Ideia">Ideia</option>
-          <option value="Planejamento">Planejamento</option>
-          <option value="Em andamento">Em andamento</option>
-          <option value="Concluído">Concluído</option>
-        </select>
-      </label>
-
-      <button type="submit">Criar pasta</button>
-    </form>
-  </dialog>
-
-  <script src="js/app.js"></script>
+  <footer>
+    <span>ORGANIZAÇÃO PARTICULAR</span>
+    <span>◉ SISTEMA ATIVO</span>
+  </footer>
 </body>
 </html>
