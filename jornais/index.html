@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jornal | Minha Oficina</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-tipo="jornal" data-fonte="../dados/jornal.json" class="pagina-jornal">
+  <header class="cabecalho">
+    <div>
+      <a class="voltar" href="../index.html">← Voltar para a oficina</a>
+      <p class="etiqueta">ARQUIVO DE JORNAL</p>
+      <h1>Jornal</h1>
+      <p class="subtitulo">Matérias, notícias e edições.</p>
+    </div>
+    <button class="botao-novo" id="abrir-formulario">+ Nova matéria</button>
+  </header>
+  <main class="conteudo">
+    <section>
+      <div class="titulo-secao">
+        <div><p class="numero-arquivo">REGISTROS</p><h2>Meus jornal</h2></div>
+        <span class="contador" id="contador">0</span>
+      </div>
+      <div id="lista-itens" class="grade-itens grade-jornal"></div>
+      <div id="lista-vazia" class="lista-vazia">
+        <span>✎</span><h3>Nenhuma matéria escrita</h3><p>Use o botão acima para criar o primeiro registro.</p>
+      </div>
+    </section>
+  </main>
+  <dialog id="formulario-dialogo">
+    <form id="formulario-item">
+      <div class="topo-formulario">
+        <div><p class="numero-arquivo">NOVO REGISTRO</p><h2>Nova matéria</h2></div>
+        <button type="button" id="fechar-formulario" class="botao-fechar" aria-label="Fechar">×</button>
+      </div>
+      <label>Manchete<input id="nome-item" type="text" maxlength="120" required></label>
+      <label>Resumo<textarea id="descricao-item" rows="6" maxlength="1500"></textarea></label>
+      <label>Status<select id="status-item"><option value="Rascunho">Rascunho</option><option value="Em revisão">Em revisão</option><option value="Pronta">Pronta</option><option value="Publicada">Publicada</option></select></label>
+      <div class="acoes-formulario">
+        <button type="button" class="botao-secundario" id="cancelar-formulario">Cancelar</button>
+        <button type="submit">Criar</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="../js/app.js"></script>
+</body>
+</html>
