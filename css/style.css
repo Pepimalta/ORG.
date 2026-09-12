@@ -690,3 +690,126 @@ footer {
     justify-self: start;
   }
 }
+
+/* Pesquisa de materiais com Gemini */
+.pesquisa-materiais {
+  margin-bottom: 28px;
+  padding: 26px;
+  background: #fff3c9;
+  border: 2px solid var(--tinta);
+  box-shadow: 7px 7px 0 var(--amarelo);
+}
+
+.pesquisa-materiais h3 {
+  margin: 7px 0;
+}
+
+.pesquisa-materiais > p {
+  color: var(--tinta-suave);
+}
+
+.etiqueta-pesquisa {
+  margin: 0;
+  color: var(--vermelho);
+  font: bold 0.68rem Arial, sans-serif;
+  letter-spacing: 2px;
+}
+
+.form-pesquisa-material {
+  display: block;
+  padding: 12px 0 0;
+}
+
+.linha-pesquisa {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.linha-pesquisa button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.grade-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.produto-encontrado {
+  overflow: hidden;
+  background: var(--papel-claro);
+  border: 2px solid var(--tinta);
+}
+
+.imagem-produto {
+  display: block;
+  width: 100%;
+  height: 165px;
+  object-fit: contain;
+  background: white;
+  border-bottom: 1px solid var(--papel-escuro);
+}
+
+.imagem-produto.sem-imagem {
+  display: grid;
+  place-items: center;
+  color: var(--tinta-suave);
+  font: bold 0.7rem Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.dados-produto {
+  display: grid;
+  gap: 9px;
+  padding: 16px;
+}
+
+.dados-produto h4,
+.dados-produto p {
+  margin: 0;
+}
+
+.dados-produto small,
+.dados-produto p,
+.nota-precos {
+  color: var(--tinta-suave);
+}
+
+.preco-produto {
+  color: var(--verde);
+  font-size: 1.2rem;
+}
+
+.link-produto {
+  width: fit-content;
+  color: var(--vermelho);
+  font-weight: bold;
+}
+
+.link-indisponivel,
+.aviso-pesquisa,
+.erro-pesquisa {
+  display: block;
+  margin-top: 18px;
+  padding: 12px;
+  background: var(--papel-claro);
+}
+
+.erro-pesquisa {
+  color: var(--vermelho);
+  border-left: 5px solid var(--vermelho);
+}
+
+.nota-precos {
+  font-size: 0.82rem;
+}
+
+@media (max-width: 700px) {
+  .linha-pesquisa {
+    grid-template-columns: 1fr;
+  }
+}
