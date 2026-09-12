@@ -4,6 +4,7 @@ const fonte = document.body.dataset.fonte;
 const configuracoes = {
   projetos: { chave: "org-projetos", singular: "projeto", plural: "projetos" },
   jogos: { chave: "org-jogos", singular: "jogo", plural: "jogos" },
+  historias: { chave: "org-historias", singular: "história", plural: "histórias" },
   jornal: { chave: "org-jornal", singular: "matéria", plural: "matérias" }
 };
 
