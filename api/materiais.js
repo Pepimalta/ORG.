@@ -38,7 +38,13 @@ Retorne SOMENTE JSON válido, sem markdown, neste formato:
 Regras: no máximo 6 produtos; use apenas links encontrados na pesquisa; não invente preço, loja, link ou imagem; quando um dado não estiver disponível use string vazia; prefira o menor preço total aparente; avise em observacao que preço e disponibilidade podem mudar.`;
 
   try {
-    const resposta = await fetch(
+    const pedido = {
+      contents: [{ parts: [{ text: prompt }] }],
+      tools: [{ google_search: {} }],
+      generationConfig: { temperature: 0.1 }
+    };
+
+    let resposta = await fetch(
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent",
       {
         method: "POST",
@@ -46,13 +52,29 @@ Regras: no máximo 6 produtos; use apenas links encontrados na pesquisa; não in
           "Content-Type": "application/json",
           "x-goog-api-key": process.env.GEMINI_API_KEY
         },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          tools: [{ google_search: {} }],
-          generationConfig: { temperature: 0.1 }
-        })
+        body: JSON.stringify(pedido)
       }
     );
+
+    // As chaves AQ. são o formato novo de autorização. Em contas que
+    // ainda não aceitam generateContent, tentamos a API Interactions.
+    if (!resposta.ok && process.env.GEMINI_API_KEY.startsWith("AQ.")) {
+      resposta = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/interactions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": process.env.GEMINI_API_KEY
+          },
+          body: JSON.stringify({
+            model: "gemini-3.7-flash",
+            input: prompt,
+            tools: [{ type: "google_search" }]
+          })
+        }
+      );
+    }
 
     const dados = await resposta.json();
     if (!resposta.ok) {
