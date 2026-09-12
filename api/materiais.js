@@ -78,7 +78,13 @@ Regras: no máximo 6 produtos; use apenas links encontrados na pesquisa; não in
 
     const dados = await resposta.json();
     if (!resposta.ok) {
-      console.error("Gemini:", dados?.error?.message || dados);
+      const mensagem = dados?.error?.message || "";
+      console.error("Gemini:", mensagem || dados);
+      if (resposta.status === 429) {
+        return responder(res, 429, {
+          erro: "A cota do Gemini acabou por enquanto. Aguarde o limite renovar ou verifique o plano e o faturamento da conta."
+        });
+      }
       return responder(res, resposta.status, { erro: "O Gemini não conseguiu fazer a pesquisa agora." });
     }
 
