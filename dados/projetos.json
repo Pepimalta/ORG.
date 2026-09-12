@@ -397,5 +397,208 @@
       "Fazer lista final de compras com preços atuais.",
       "Decidir se os rascunhos e imagens serão adicionados ao repositório."
     ]
+  },
+  {
+    "id": "candies-and-deaths",
+    "nome": "Candies and Deaths",
+    "categoria": "Jogo",
+    "status": "Em desenvolvimento",
+    "autor": "Pepi",
+    "inspiracao": {
+      "principal": "Survival horror em 2D/2.5D com exploração lateral detalhada e perseguições em perspectiva com zoom.",
+      "objetivo_visual": "Criar um parque temático colorido, funcional e agradável antes do desastre, para que o mesmo espaço ganhe contraste quando a infecção transforma o ambiente em horror."
+    },
+    "objetivo": "Desenvolver um jogo de terror ambientado nos parques Candyworld, acompanhando Math durante o colapso causado pela infecção dos doces vivos, com exploração 2D lateral imersiva, perseguições 2.5D e uma história dividida em seis capítulos.",
+    "funcionamento": {
+      "resumo": "Math, um funcionário de 24 anos do Candyworld, trabalha em um quiosque de café e cupcakes no Bioma 64. Em 08/10/2018, após ir ao banheiro e demorar mexendo no celular, ele retorna ao quiosque e encontra os colegas mortos. Ao longe vê Candymen, o principal mascote do bioma, completamente deformado; sem saber, Candymen já o havia avistado primeiro.",
+      "sequencia": [
+        "Apresentar Math trabalhando normalmente no quiosque de café e cupcakes do Bioma 64.",
+        "Math vai ao banheiro e demora alguns minutos mexendo no celular.",
+        "Ao retornar ao quiosque, Math encontra os colegas mortos.",
+        "Math avista Candymen deformado à distância, enquanto Candymen já percebeu a presença dele.",
+        "Capítulo 1: Candymen.",
+        "Capítulo 2: Penguin, the Bird.",
+        "Capítulo 3: Candy DJ.",
+        "Capítulo 4: Cake Tiger.",
+        "Capítulo 5: The Variables.",
+        "Capítulo 6: The Entity."
+      ]
+    },
+    "decisoes": {
+      "protagonista": {
+        "nome": "Math",
+        "idade": 24,
+        "funcao": "Funcionário do Candyworld; no início trabalha em um quiosque de café e cupcakes no Bioma 64.",
+        "data_do_inicio": "08/10/2018"
+      },
+      "parque": {
+        "nome": "Candyworld",
+        "conceito": "Rede de parques gigantescos com doces, lojas, restaurantes, atrações, biomas artificiais e doces vivos falantes e raciocinantes.",
+        "quantidade_de_biomas": 210,
+        "entrada_dos_biomas": "Cerca de 7 metros após entrar em um bioma, o visitante já chega às atrações, lojas, restaurantes e demais áreas públicas.",
+        "conexoes": "Alguns biomas, como 40 e 95, possuem entradas para estações de trem construídas para ligar um parque Candyworld a outro."
+      },
+      "rio_de_acucar": {
+        "funcao": "Principal passeio e eixo de conexão entre os biomas do parque.",
+        "extensao_km": 10.512,
+        "largura_biomas_1_a_60_m": 13,
+        "largura_biomas_61_a_210_m": 16.5,
+        "trecho_de_barco": "Os visitantes percorrem 105 biomas em grandes barcos de lago com capacidade para 60 pessoas.",
+        "trecho_aereo": "No 105º bioma, os visitantes desembarcam e seguem em carrinhos de trilho com capacidade para 4 pessoas, elevados para observar criaturas voadoras. Penguin, the Bird não se encaixa nessa parte por não voar.",
+        "PD": "Percurso Direto: 12 km/h, sem paradas para lojas e passeios; possui parada de almoço de 15 minutos e também pode ser usado por visitantes que querem chegar mais rapidamente a conexões para outro parque.",
+        "PND": "Percurso Não Direto: 8 km/h, com paradas para passear, conhecer lojas e outras áreas; a parada para almoço dura 1h15."
+      },
+      "mariplos": {
+        "origem": "Flores criadas nos laboratórios subterrâneos dos parques Candyworld.",
+        "funcao": "Estruturar biologicamente os corpos dos doces vivos.",
+        "aparencia": "Semelhantes a uma flor Crista-de-Galo, porém com pétalas parecidas com as de rosas.",
+        "ativacao_cinetica": [
+          "A semente da Mariplos é colocada em um molde para crescer no formato desejado.",
+          "É preparado um líquido com Biovitalita e açúcar derretido.",
+          "A Fluoruclosamina não deve substituir a Biovitalita, pois provoca mutações na planta."
+        ],
+        "nomenclatura": "Os doces podem ser identificados pelo nome comercial, por código FB (por exemplo FB-64 para Candymen) ou por Flos Biomi-(número). Quando existe mais de um doce no mesmo bioma, usa-se um sufixo numérico, como Flos Biomi-67-02 para Penguin."
+      },
+      "infeccao": {
+        "gatilho": "A Mariplos sofre mutações quando entra em contato com cloridrato de Fluoruclosamina.",
+        "percepcao": "A planta infectada não depende de olhos para perceber o ambiente; ela mapeia o que existe ao redor e desenvolve bocas inspiradas nos seres percebidos, normalmente humanas por causa da presença de pessoas no parque.",
+        "primeiro_incidente": "Durante tentativas laboratoriais de criar o líquido que daria vida à união da Mariplos com o açúcar, a Fluoruclosamina foi usada e originou um primeiro infectado, que foi morto.",
+        "inicio_do_desastre": "Mais tarde, o chefe da cozinha coloca cloridrato de Fluoruclosamina no açúcar consumido pelos doces, provocando a infecção em larga escala e o caos no parque."
+      },
+      "antagonistas_por_capitulo": {
+        "1": "Candymen",
+        "2": "Penguin, the Bird",
+        "3": "Candy DJ",
+        "4": "Cake Tiger",
+        "5": "The Variables",
+        "6": "The Entity"
+      },
+      "entidade": {
+        "conceito": "Entidade sobrenatural de açúcar ligada à Mariplos infectada e ao açúcar queimado.",
+        "comportamento": "Não precisa de alimento, não sente sede de sangue e absorve doces pela grande boca inferior para adquirir suas habilidades.",
+        "poderes": "Pode criar matéria ou criaturas, assimilar habilidades de doces consumidos e usar poderes de domínio de área.",
+        "objetivo": "Expandir a própria existência até transformar áreas e, eventualmente, o mundo em extensões dela.",
+        "variables": "The Variables são manifestações/variáveis da Entidade e, no Capítulo 5, protegem o corpo original enquanto Math e Candymen tentam seguir as manifestações da Entidade para descobrir onde ela está."
+      },
+      "marshboy": "Conceito removido. Marshboy foi uma ideia inicial para o papel que atualmente pertence à Entidade e não faz mais parte do canon.",
+      "formato_do_jogo": {
+        "exploracao": "2D lateral mais próxima e imersiva.",
+        "perseguicoes": "2.5D em perspectiva, com possibilidade de zoom dinâmico.",
+        "controle_futuro": "A história prevê momentos em que o jogador alterna entre Math e Candymen."
+      }
+    },
+    "forcas_e_mecanica": {
+      "estrutura_de_jogo": "Exploração lateral 2D combinada com perseguições 2.5D.",
+      "perseguicoes": "A câmera muda para uma perspectiva mais profunda nas perseguições, permitindo maior sensação de velocidade e aproximação do inimigo.",
+      "troca_de_personagem": "Planejada para partes posteriores: em determinados momentos o jogador precisará alternar entre Math e Candymen.",
+      "capitulo_5": "Mais focado em seguir e encontrar a Entidade do que em enfrentar repetidamente todas as Variáveis; Candymen participa dos confrontos enquanto o objetivo principal é localizar o corpo verdadeiro.",
+      "capitulo_6": "Está previsto que Math morra durante o último capítulo após cair em uma armadilha da Entidade envolvendo uma semente de Mariplos. A consequência narrativa e a sequência final ainda precisam ser desenvolvidas."
+    },
+    "componentes_planejados": [],
+    "materiais_esteticos": {
+      "prioridade": "Ainda não há materiais físicos registrados para o projeto.",
+      "opcoes": []
+    },
+    "etapas_do_projeto": [
+      {
+        "etapa": 1,
+        "nome": "Bíblia do universo",
+        "status": "Em andamento",
+        "descricao": "Consolidar o canon do Candyworld, dos doces vivos, da Mariplos, da infecção e dos antagonistas."
+      },
+      {
+        "etapa": 2,
+        "nome": "Estrutura do Candyworld",
+        "status": "Em andamento",
+        "descricao": "Definir os biomas, o Rio de Açúcar, PD/PND, estações, lojas, restaurantes, atrações e conexões entre parques."
+      },
+      {
+        "etapa": 3,
+        "nome": "Roteiro do Capítulo 1",
+        "status": "Em andamento",
+        "descricao": "Reescrever o início definitivo com Math no Bioma 64, o quiosque, a ida ao banheiro, o retorno ao local e o primeiro encontro com Candymen infectado."
+      },
+      {
+        "etapa": 4,
+        "nome": "Design visual dos personagens",
+        "status": "Em andamento",
+        "descricao": "Consolidar os desenhos oficiais dos mascotes, infectados, Mariplos, Entidade e protagonista."
+      },
+      {
+        "etapa": 5,
+        "nome": "Mapa do Bioma 64",
+        "status": "Em andamento",
+        "descricao": "Transformar os rascunhos da entrada, desembarque, praça de alimentação e lojas em uma planta coerente para o primeiro cenário jogável."
+      },
+      {
+        "etapa": 6,
+        "nome": "Sprites do Math",
+        "status": "Pendente",
+        "descricao": "Definir a aparência final do protagonista e criar os primeiros sprites de perfil para idle, caminhada e corrida."
+      },
+      {
+        "etapa": 7,
+        "nome": "Protótipo jogável",
+        "status": "Pendente",
+        "descricao": "Criar uma fatia curta do Capítulo 1 com Math andando pelo primeiro cenário, ida ao banheiro, retorno ao quiosque e início do perigo."
+      },
+      {
+        "etapa": 8,
+        "nome": "Sistema de perseguição 2.5D",
+        "status": "Pendente",
+        "descricao": "Prototipar perseguições em perspectiva com zoom e sensação de profundidade."
+      },
+      {
+        "etapa": 9,
+        "nome": "Capítulos 2 a 4",
+        "status": "Em definição",
+        "descricao": "Revisar os conceitos já criados para Penguin, the Bird, Candy DJ e Cake Tiger à luz do novo canon do parque."
+      },
+      {
+        "etapa": 10,
+        "nome": "Capítulos 5 e 6",
+        "status": "Em definição",
+        "descricao": "Desenvolver The Variables, a perseguição à Entidade, o corpo verdadeiro e o desfecho final."
+      }
+    ],
+    "ideias_futuras": [
+      "Criar um mapa completo do Candyworld e dos 210 biomas sem precisar detalhar todos de uma vez.",
+      "Definir visualmente Math e preparar uma folha de referência para animação.",
+      "Experimentar a troca de câmera entre exploração 2D lateral e perseguição 2.5D.",
+      "Criar ambientes modulares do Bioma 64 para não gerar ou modelar o parque inteiro de uma vez.",
+      "Desenvolver o núcleo do Cake Tiger e sua relação com a forma como a Entidade protege o próprio corpo.",
+      "Detalhar a lógica das Variáveis e quais habilidades assimiladas cada uma manifesta."
+    ],
+    "imagens_e_rascunhos": {
+      "existem": true,
+      "descricao": [
+        "Rascunhos do Bioma 64 mostrando entrada/portão, centro de desembarque, praça de alimentação e lojas.",
+        "Desenhos conceituais da Mariplos infectada e da Entidade.",
+        "Desenho do Cake Tiger e estudos de paleta da forma infectada.",
+        "Testes visuais e tentativas de geração 3D do ambiente do parque."
+      ],
+      "observacao": "As imagens foram compartilhadas na conversa, mas não foram adicionadas como arquivos ao repositório."
+    },
+    "componentes_pesquisados_e_decisoes": [],
+    "criterios_de_sucesso": [
+      "O Candyworld deve parecer um parque que realmente funcionava antes do desastre.",
+      "O início do Capítulo 1 deve apresentar Math, o Bioma 64 e Candymen sem depender de exposição excessiva.",
+      "A exploração 2D deve ser detalhada e imersiva sem perder legibilidade de gameplay.",
+      "As perseguições 2.5D devem transmitir profundidade, velocidade e proximidade do inimigo.",
+      "As regras da Mariplos, Ativação Cinética e infecção devem permanecer coerentes entre os capítulos.",
+      "Os antagonistas dos seis capítulos devem ter funções e mecânicas distintas, evitando repetição."
+    ],
+    "pendencias": [
+      "Definir a aparência final de Math.",
+      "Definir o visual final de Candymen após a mudança de Candy Box para Candymen.",
+      "Concluir a planta funcional do Bioma 64.",
+      "Detalhar por que o chefe da cozinha colocou cloridrato de Fluoruclosamina no açúcar dos doces.",
+      "Detalhar o núcleo do Cake Tiger.",
+      "Definir com precisão o funcionamento e a aparência das Variáveis.",
+      "Desenvolver a sequência completa da morte de Math e o restante do Capítulo 6.",
+      "Escolher e configurar a ferramenta/engine definitiva do protótipo.",
+      "Criar os sprites iniciais de Math.",
+      "Decidir posteriormente quais rascunhos devem ser adicionados ao repositório público."
+    ]
   }
 ]
