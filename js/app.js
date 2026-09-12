@@ -63,7 +63,8 @@ async function carregarArquivo() {
 }
 
 function todosOsItens() {
-  const remotosVisiveis = itensRemotos.filter(item => !idsOcultos.includes(item.id));
+  const locaisIds = new Set(itensLocais.map(item => String(item.id)));
+  const remotosVisiveis = itensRemotos.filter(item => !idsOcultos.includes(item.id) && !locaisIds.has(String(item.id)));
   return [...itensLocais, ...remotosVisiveis];
 }
 
@@ -105,7 +106,7 @@ function criarCartao(item) {
   });
 
   cartao.addEventListener("keydown", evento => {
-    if (evento.key === "Enter" || evento.key === " ") {
+    if (evento.target === cartao && (evento.key === "Enter" || evento.key === " ")) {
       evento.preventDefault();
       abrirDetalhes();
     }
@@ -139,7 +140,10 @@ function criarCartao(item) {
   excluir.textContent = "Excluir";
   excluir.addEventListener("click", () => excluirItem(item));
 
-  rodape.append(data, excluir);
+  const editar = document.createElement("button");
+  editar.type = "button"; editar.className = "botao-excluir"; editar.textContent = "Editar";
+  editar.onclick = abrirDetalhes;
+  rodape.append(data, editar, excluir);
   cartao.append(status, titulo, descricao, dica, rodape);
   return cartao;
 }
