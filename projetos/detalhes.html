@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do projeto | Minha Oficina</title>
+  <link rel="stylesheet" href="../css/style.css?v=20260911-1">
+</head>
+<body>
+  <header class="cabecalho cabecalho-projeto">
+    <div class="identidade-projeto">
+      <a class="voltar" href="./">← Voltar para projetos</a>
+      <p class="etiqueta">FICHA DO PROJETO</p>
+      <h1 id="titulo-projeto">Carregando...</h1>
+      <div class="metadados-projeto">
+        <span class="selo-detalhe" id="status-projeto">—</span>
+        <span class="selo-detalhe secundario" id="categoria-projeto">—</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <div id="detalhes-carregando" class="detalhes-carregando">Abrindo a ficha do projeto...</div>
+    <div id="detalhes-erro" class="detalhes-erro" hidden>
+      <h2>Projeto não encontrado</h2>
+      <p>Volte para a lista e escolha um projeto existente.</p>
+    </div>
+
+    <article id="detalhes-projeto" hidden>
+      <p class="objetivo-destaque" id="objetivo-projeto"></p>
+
+      <nav class="abas-detalhes" aria-label="Detalhes do projeto">
+        <button class="aba-detalhe ativa" data-painel="visao-geral">Visão geral</button>
+        <button class="aba-detalhe" data-painel="etapas">Etapas</button>
+        <button class="aba-detalhe" data-painel="materiais">Materiais</button>
+        <button class="aba-detalhe" data-painel="imagens">Imagens</button>
+        <button class="aba-detalhe" data-painel="anotacoes">Anotações</button>
+      </nav>
+
+      <section class="painel-detalhe ativo" id="visao-geral"></section>
+      <section class="painel-detalhe" id="etapas"></section>
+      <section class="painel-detalhe" id="materiais"></section>
+      <section class="painel-detalhe" id="imagens"></section>
+      <section class="painel-detalhe" id="anotacoes"></section>
+    </article>
+  </main>
+
+  <script src="../js/detalhes.js?v=20260911-1"></script>
+</body>
+</html>
