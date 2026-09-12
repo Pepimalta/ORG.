@@ -92,6 +92,13 @@ function prepararPesquisaMateriais() {
   const formulario = document.querySelector("#form-pesquisa-material");
   if (!formulario) return;
 
+  document.querySelector("#abrir-busca-externa").addEventListener("click", () => {
+    const termo = document.querySelector("#pesquisa-material").value.trim();
+    if (termo.length >= 2) {
+      window.open("https://www.google.com/search?tbm=shop&q=" + encodeURIComponent(termo), "_blank", "noopener");
+    }
+  });
+
   formulario.addEventListener("submit", async evento => {
     evento.preventDefault();
     const campo = document.querySelector("#pesquisa-material");
@@ -157,7 +164,7 @@ function montarMateriais(projeto) {
       '<form id="form-pesquisa-material" class="form-pesquisa-material">' +
         '<label for="pesquisa-material">Material</label>' +
         '<div class="linha-pesquisa"><input id="pesquisa-material" maxlength="100" placeholder="Ex.: ESP32 DevKit V1" required>' +
-        '<button type="submit">Pesquisar</button></div>' +
+        '<button type="submit">Pesquisar com IA</button><button type="button" class="botao-externo" id="abrir-busca-externa">Pesquisar na web</button></div>' +
       '</form><div id="resultado-materiais" aria-live="polite"></div>' +
     '</section>' +
     bloco("Componentes planejados", lista(componentes)) +
