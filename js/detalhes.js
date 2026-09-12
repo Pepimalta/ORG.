@@ -105,7 +105,7 @@ function prepararPesquisaMateriais() {
     resultado.innerHTML = '<p class="aviso-pesquisa">Procurando preços e lojas...</p>';
 
     try {
-      const resposta = await fetch("/api/materiais", {
+      const resposta = await fetch("https://org-beta-kohl.vercel.app/api/materiais", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ termo })
