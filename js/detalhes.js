@@ -1,9 +1,35 @@
 const parametros = new URLSearchParams(window.location.search);
-const projetoId = parametros.get("id");
+const tipo = parametros.get("tipo");
+const itemId = parametros.get("id");
 
+const configuracoes = {
+  projetos: {
+    fonte: "dados/projetos.json",
+    chaveLocal: "org-projetos",
+    rotulo: "Projeto",
+    plural: "Projetos",
+    voltar: "projetos/"
+  },
+  jogos: {
+    fonte: "dados/jogos.json",
+    chaveLocal: "org-jogos",
+    rotulo: "Jogo",
+    plural: "Jogos",
+    voltar: "jogos/"
+  },
+  jornal: {
+    fonte: "dados/jornal.json",
+    chaveLocal: "org-jornal",
+    rotulo: "Matéria",
+    plural: "Matérias",
+    voltar: "jornais/"
+  }
+};
+
+const configuracao = configuracoes[tipo];
 const carregando = document.querySelector("#detalhes-carregando");
 const erro = document.querySelector("#detalhes-erro");
-const conteudo = document.querySelector("#detalhes-projeto");
+const conteudo = document.querySelector("#detalhes-item");
 
 function escapar(valor = "") {
   return String(valor)
@@ -15,184 +41,150 @@ function escapar(valor = "") {
 }
 
 function tituloChave(chave) {
-  return chave
+  const especiais = {
+    id: "Identificador",
+    criadoEm: "Criado em",
+    dataCriacao: "Data de criação",
+    etapas_do_projeto: "Etapas",
+    componentes_planejados: "Componentes planejados",
+    materiais_esteticos: "Materiais estéticos",
+    imagens_e_rascunhos: "Imagens e rascunhos",
+    componentes_pesquisados_e_decisoes: "Componentes pesquisados e decisões",
+    criterios_de_sucesso: "Critérios de sucesso",
+    ideias_futuras: "Ideias futuras",
+    forcas_e_mecanica: "Forças e mecânica"
+  };
+  return especiais[chave] || chave
     .replaceAll("_", " ")
     .replace(/\b\w/g, letra => letra.toUpperCase());
 }
 
-function lista(valores, ordenada = false) {
-  if (!Array.isArray(valores) || !valores.length) return "<p>Nenhum registro.</p>";
-  const tag = ordenada ? "ol" : "ul";
-  return "<" + tag + ">" + valores.map(valor =>
-    "<li>" + escapar(typeof valor === "string" ? valor : valor.nome || valor.material || JSON.stringify(valor)) + "</li>"
-  ).join("") + "</" + tag + ">";
+function valorVazio(valor) {
+  if (valor === null || valor === undefined || valor === "") return true;
+  if (Array.isArray(valor)) return valor.length === 0;
+  if (typeof valor === "object") return Object.keys(valor).length === 0;
+  return false;
 }
 
-function bloco(titulo, corpo) {
-  return '<section class="bloco-detalhe"><h3>' + escapar(titulo) + "</h3>" + corpo + "</section>";
+function renderizarValor(valor) {
+  if (valorVazio(valor)) return '<p class="sem-registro">Sem registro.</p>';
+
+  if (Array.isArray(valor)) {
+    return "<ul>" + valor.map(item => "<li>" + renderizarValor(item) + "</li>").join("") + "</ul>";
+  }
+
+  if (typeof valor === "object") {
+    return '<div class="detalhes-aninhados">' + Object.entries(valor)
+      .filter(([, conteudo]) => !valorVazio(conteudo))
+      .map(([chave, conteudo]) =>
+        '<section class="bloco-detalhe">' +
+          "<h4>" + escapar(tituloChave(chave)) + "</h4>" +
+          renderizarValor(conteudo) +
+        "</section>"
+      ).join("") + "</div>";
+  }
+
+  if (typeof valor === "boolean") return "<p>" + (valor ? "Sim" : "Não") + "</p>";
+  return "<p>" + escapar(valor) + "</p>";
 }
 
-function textoObjeto(objeto) {
-  if (!objeto || typeof objeto !== "object") return "<p>" + escapar(objeto || "Sem registro.") + "</p>";
-
-  return "<ul>" + Object.entries(objeto).map(([chave, valor]) => {
-    if (Array.isArray(valor)) {
-      return "<li><strong>" + escapar(tituloChave(chave)) + ":</strong>" + lista(valor) + "</li>";
-    }
-    if (valor && typeof valor === "object") {
-      return "<li><strong>" + escapar(tituloChave(chave)) + ":</strong>" + textoObjeto(valor) + "</li>";
-    }
-    return "<li><strong>" + escapar(tituloChave(chave)) + ":</strong> " + escapar(valor) + "</li>";
-  }).join("") + "</ul>";
+function bloco(titulo, valor) {
+  if (valorVazio(valor)) return "";
+  return '<section class="bloco-detalhe"><h3>' + escapar(titulo) + "</h3>" + renderizarValor(valor) + "</section>";
 }
 
-function montarVisaoGeral(projeto) {
-  const funcionamento = projeto.funcionamento || {};
-  document.querySelector("#visao-geral").innerHTML =
-    '<div class="grade-detalhes">' +
-      bloco("Inspiração", "<p>" + escapar(projeto.inspiracao?.principal || "Sem registro.") + "</p>") +
-      bloco("Funcionamento", "<p>" + escapar(funcionamento.resumo || "Sem registro.") + "</p>") +
-      bloco("Sequência planejada", lista(funcionamento.sequencia, true)) +
-      bloco("Critérios de sucesso", lista(projeto.criterios_de_sucesso)) +
+function normalizarDados(dados) {
+  if (Array.isArray(dados)) return dados;
+  if (!dados || typeof dados !== "object") return [];
+  if (Array.isArray(dados[tipo])) return dados[tipo];
+  if (tipo === "jornal" && Array.isArray(dados.materias)) return dados.materias;
+  if (tipo === "jornal" && Array.isArray(dados.edicoes)) return dados.edicoes;
+  return [];
+}
+
+function lerLocais() {
+  try {
+    return JSON.parse(localStorage.getItem(configuracao.chaveLocal) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function resumoDoItem(item) {
+  return item.objetivo || item.descricao || item.resumo || item.funcionamento?.resumo || "Sem resumo registrado.";
+}
+
+function montarVisaoGeral(item) {
+  const campos = [
+    ["Resumo", resumoDoItem(item)],
+    ["Inspiração", item.inspiracao],
+    ["Funcionamento", item.funcionamento],
+    ["Critérios de sucesso", item.criterios_de_sucesso]
+  ];
+  document.querySelector("#visao-geral").innerHTML = '<div class="grade-detalhes">' +
+    campos.map(([titulo, valor]) => bloco(titulo, valor)).join("") +
     "</div>";
 }
 
-function montarEtapas(projeto) {
-  const etapas = projeto.etapas_do_projeto || [];
+function montarEtapas(item) {
+  const etapas = item.etapas_do_projeto || item.etapas || [];
   document.querySelector("#etapas").innerHTML = etapas.length
-    ? '<ol class="lista-etapas">' + etapas.map(etapa =>
-        '<li class="etapa-projeto">' +
-          '<span class="numero-etapa">' + escapar(etapa.etapa) + "</span>" +
-          "<div><h3>" + escapar(etapa.nome) + "</h3><p>" + escapar(etapa.descricao) + "</p></div>" +
-          '<span class="estado-etapa">' + escapar(etapa.status) + "</span>" +
-        "</li>"
-      ).join("") + "</ol>"
-    : bloco("Etapas", "<p>Nenhuma etapa registrada.</p>");
+    ? '<div class="grade-detalhes">' + bloco("Etapas", etapas) + "</div>"
+    : '<p class="sem-registro">Nenhuma etapa registrada.</p>';
 }
 
-function cartaoProduto(produto) {
-  const imagem = produto.imagem
-    ? '<img class="imagem-produto" src="' + escapar(produto.imagem) + '" alt="" loading="lazy" referrerpolicy="no-referrer">'
-    : '<div class="imagem-produto sem-imagem">SEM IMAGEM</div>';
-  const link = produto.link
-    ? '<a class="link-produto" href="' + escapar(produto.link) + '" target="_blank" rel="noopener noreferrer">Ver produto ↗</a>'
-    : '<span class="link-indisponivel">Link não encontrado</span>';
-
-  return '<article class="produto-encontrado">' +
-    imagem +
-    '<div class="dados-produto"><small>' + escapar(produto.loja || "Loja não informada") + '</small>' +
-    '<h4>' + escapar(produto.nome || "Produto") + '</h4>' +
-    '<strong class="preco-produto">' + escapar(produto.preco || "Preço não encontrado") + '</strong>' +
-    link +
-    (produto.observacao ? '<p>' + escapar(produto.observacao) + '</p>' : '') +
-    '</div></article>';
-}
-
-function prepararPesquisaMateriais() {
-  const formulario = document.querySelector("#form-pesquisa-material");
-  if (!formulario) return;
-
-  document.querySelector("#abrir-busca-externa").addEventListener("click", () => {
-    const termo = document.querySelector("#pesquisa-material").value.trim();
-    if (termo.length >= 2) {
-      window.open("https://www.google.com/search?tbm=shop&q=" + encodeURIComponent(termo), "_blank", "noopener");
-    }
-  });
-
-  formulario.addEventListener("submit", async evento => {
-    evento.preventDefault();
-    const campo = document.querySelector("#pesquisa-material");
-    const botao = formulario.querySelector("button");
-    const resultado = document.querySelector("#resultado-materiais");
-    const termo = campo.value.trim();
-    if (termo.length < 2) return;
-
-    botao.disabled = true;
-    botao.textContent = "Pesquisando...";
-    resultado.innerHTML = '<p class="aviso-pesquisa">Procurando preços e lojas...</p>';
-
-    try {
-      const resposta = await fetch("https://org-beta-kohl.vercel.app/api/materiais", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ termo })
-      });
-      const dados = await resposta.json();
-      if (!resposta.ok) {
-        const falha = new Error(dados.erro || "A pesquisa falhou.");
-        falha.status = resposta.status;
-        throw falha;
-      }
-
-      resultado.innerHTML = dados.produtos?.length
-        ? '<div class="grade-produtos">' + dados.produtos.map(cartaoProduto).join("") + '</div>' +
-          '<p class="nota-precos">Confira o preço, o frete e a segurança da loja antes de comprar. Os valores podem mudar.</p>'
-        : '<p class="aviso-pesquisa">Nenhum produto foi encontrado.</p>';
-    } catch (falha) {
-      const buscaExterna = "https://www.google.com/search?tbm=shop&q=" + encodeURIComponent(termo);
-      const alternativa = falha.status === 429
-        ? '<a class="botao-busca-externa" href="' + buscaExterna + '" target="_blank" rel="noopener noreferrer">Abrir Google Shopping ↗</a>'
-        : "";
-      resultado.innerHTML = '<p class="erro-pesquisa">' + escapar(falha.message) + '</p>' + alternativa;
-    } finally {
-      botao.disabled = false;
-      botao.textContent = "Pesquisar";
-    }
-  });
-}
-
-function montarMateriais(projeto) {
-  const componentes = projeto.componentes_planejados || [];
-  const esteticos = projeto.materiais_esteticos?.opcoes || [];
-  const pesquisados = projeto.componentes_pesquisados_e_decisoes || [];
-
-  const cardsEsteticos = esteticos.map(item =>
-    '<li class="material-item"><strong>' + escapar(item.material) + "</strong><p>" +
-    escapar(item.uso || "") + "</p><small>" + escapar(item.vantagem || "") + "</small></li>"
-  ).join("");
-
-  const cardsPesquisados = pesquisados.map(item =>
-    '<li class="material-item"><strong>' + escapar(item.componente) + "</strong><p>" +
-    escapar(item.decisao || "") + "</p></li>"
-  ).join("");
-
-  document.querySelector("#materiais").innerHTML =
-    '<section class="pesquisa-materiais">' +
-      '<p class="etiqueta-pesquisa">PESQUISA COM IA</p>' +
-      '<h3>Encontrar material</h3>' +
-      '<p>Digite o componente para procurar opções, preços e lojas.</p>' +
-      '<form id="form-pesquisa-material" class="form-pesquisa-material">' +
-        '<label for="pesquisa-material">Material</label>' +
-        '<div class="linha-pesquisa"><input id="pesquisa-material" maxlength="100" placeholder="Ex.: ESP32 DevKit V1" required>' +
-        '<button type="submit">Pesquisar com IA</button><button type="button" class="botao-externo" id="abrir-busca-externa">Pesquisar na web</button></div>' +
-      '</form><div id="resultado-materiais" aria-live="polite"></div>' +
-    '</section>' +
-    bloco("Componentes planejados", lista(componentes)) +
-    '<div class="grade-detalhes" style="margin-top:22px">' +
-      bloco("Materiais de estrutura e acabamento", esteticos.length ? '<ul class="lista-materiais">' + cardsEsteticos + "</ul>" : "<p>Nenhum material registrado.</p>") +
-      bloco("Componentes pesquisados", pesquisados.length ? '<ul class="lista-materiais">' + cardsPesquisados + "</ul>" : "<p>Nenhum componente pesquisado.</p>") +
-    "</div>";
-
-  prepararPesquisaMateriais();
-}
-
-function montarImagens(projeto) {
-  const imagens = projeto.imagens_e_rascunhos || {};
-  document.querySelector("#imagens").innerHTML =
-    '<div class="grade-detalhes">' +
-      bloco("Imagens e rascunhos", lista(imagens.descricao)) +
-      bloco("Observação", "<p>" + escapar(imagens.observacao || "Nenhuma imagem adicionada ao repositório.") + "</p>") +
+function montarMateriais(item) {
+  const materiais = {
+    componentes_planejados: item.componentes_planejados,
+    materiais_esteticos: item.materiais_esteticos,
+    componentes_pesquisados_e_decisoes: item.componentes_pesquisados_e_decisoes,
+    materiais: item.materiais
+  };
+  document.querySelector("#materiais").innerHTML = '<div class="grade-detalhes">' +
+    Object.entries(materiais)
+      .filter(([, valor]) => !valorVazio(valor))
+      .map(([chave, valor]) => bloco(tituloChave(chave), valor))
+      .join("") +
     "</div>";
 }
 
-function montarAnotacoes(projeto) {
-  document.querySelector("#anotacoes").innerHTML =
-    '<div class="grade-detalhes">' +
-      bloco("Decisões", textoObjeto(projeto.decisoes)) +
-      bloco("Pendências", lista(projeto.pendencias)) +
-      bloco("Ideias futuras", lista(projeto.ideias_futuras)) +
-      bloco("Forças e mecânica", textoObjeto(projeto.forcas_e_mecanica)) +
+function montarImagens(item) {
+  const imagens = item.imagens_e_rascunhos || item.imagens || [];
+  document.querySelector("#imagens").innerHTML = valorVazio(imagens)
+    ? '<p class="sem-registro">Nenhuma imagem registrada.</p>'
+    : '<div class="grade-detalhes">' + bloco("Imagens e rascunhos", imagens) + "</div>";
+}
+
+function montarAnotacoes(item) {
+  const anotacoes = {
+    decisoes: item.decisoes,
+    pendencias: item.pendencias,
+    ideias_futuras: item.ideias_futuras,
+    forcas_e_mecanica: item.forcas_e_mecanica,
+    anotacoes: item.anotacoes
+  };
+  document.querySelector("#anotacoes").innerHTML = '<div class="grade-detalhes">' +
+    Object.entries(anotacoes)
+      .filter(([, valor]) => !valorVazio(valor))
+      .map(([chave, valor]) => bloco(tituloChave(chave), valor))
+      .join("") +
     "</div>";
+}
+
+function montarConteudoCompleto(item) {
+  const ignorar = new Set([
+    "id", "nome", "titulo", "status", "categoria", "origem",
+    "descricao", "objetivo", "resumo", "inspiracao", "funcionamento",
+    "criterios_de_sucesso", "etapas_do_projeto", "etapas",
+    "componentes_planejados", "materiais_esteticos", "componentes_pesquisados_e_decisoes", "materiais",
+    "imagens_e_rascunhos", "imagens", "decisoes", "pendencias", "ideias_futuras",
+    "forcas_e_mecanica", "anotacoes"
+  ]);
+
+  const extras = Object.entries(item).filter(([chave, valor]) => !ignorar.has(chave) && !valorVazio(valor));
+  document.querySelector("#conteudo-completo").innerHTML = extras.length
+    ? '<div class="grade-detalhes">' + extras.map(([chave, valor]) => bloco(tituloChave(chave), valor)).join("") + "</div>"
+    : '<p class="sem-registro">Todas as informações deste item já estão organizadas nas outras seções.</p>';
 }
 
 function ativarAbas() {
@@ -206,33 +198,43 @@ function ativarAbas() {
   });
 }
 
-async function carregarProjeto() {
+async function carregarItem() {
+  if (!configuracao || !itemId) {
+    carregando.hidden = true;
+    erro.hidden = false;
+    return;
+  }
+
   try {
-    const resposta = await fetch("../dados/projetos.json?v=" + Date.now(), { cache: "no-store" });
-    if (!resposta.ok) throw new Error("Falha ao carregar projetos");
-    const remotos = await resposta.json();
-    const locais = JSON.parse(localStorage.getItem("org-projetos") || "[]");
-    const projeto = [...locais, ...(Array.isArray(remotos) ? remotos : remotos.projetos || [])]
-      .find(item => String(item.id) === String(projetoId));
+    const resposta = await fetch(configuracao.fonte + "?v=" + Date.now(), { cache: "no-store" });
+    if (!resposta.ok) throw new Error("Falha ao carregar o arquivo de dados.");
+    const texto = await resposta.text();
+    const dados = texto.trim() ? JSON.parse(texto) : [];
+    const remotos = normalizarDados(dados);
+    const locais = lerLocais();
+    const item = [...locais, ...remotos].find(registro => String(registro.id) === String(itemId));
 
     carregando.hidden = true;
-    if (!projeto) {
+    if (!item) {
       erro.hidden = false;
       return;
     }
 
-    document.title = (projeto.nome || projeto.titulo) + " | Minha Oficina";
-    document.querySelector("#titulo-projeto").textContent = projeto.nome || projeto.titulo;
-    document.querySelector("#status-projeto").textContent = projeto.status || "Registrado";
-    document.querySelector("#categoria-projeto").textContent = projeto.categoria || "Projeto";
-    document.querySelector("#objetivo-projeto").textContent =
-      projeto.objetivo || projeto.descricao || "Sem objetivo registrado.";
+    const titulo = item.nome || item.titulo || "Sem título";
+    document.title = titulo + " | Minha Oficina";
+    document.querySelector("#voltar-lista").href = configuracao.voltar;
+    document.querySelector("#voltar-lista").textContent = "← Voltar para " + configuracao.plural.toLowerCase();
+    document.querySelector("#titulo-item").textContent = titulo;
+    document.querySelector("#status-item-detalhe").textContent = item.status || "Registrado";
+    document.querySelector("#categoria-item").textContent = item.categoria || configuracao.rotulo;
+    document.querySelector("#objetivo-item").textContent = resumoDoItem(item);
 
-    montarVisaoGeral(projeto);
-    montarEtapas(projeto);
-    montarMateriais(projeto);
-    montarImagens(projeto);
-    montarAnotacoes(projeto);
+    montarVisaoGeral(item);
+    montarConteudoCompleto(item);
+    montarEtapas(item);
+    montarMateriais(item);
+    montarImagens(item);
+    montarAnotacoes(item);
     ativarAbas();
     conteudo.hidden = false;
   } catch (falha) {
@@ -242,4 +244,4 @@ async function carregarProjeto() {
   }
 }
 
-carregarProjeto();
+carregarItem();
