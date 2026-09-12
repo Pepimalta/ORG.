@@ -70,6 +70,62 @@ function montarEtapas(projeto) {
     : bloco("Etapas", "<p>Nenhuma etapa registrada.</p>");
 }
 
+function cartaoProduto(produto) {
+  const imagem = produto.imagem
+    ? '<img class="imagem-produto" src="' + escapar(produto.imagem) + '" alt="" loading="lazy" referrerpolicy="no-referrer">'
+    : '<div class="imagem-produto sem-imagem">SEM IMAGEM</div>';
+  const link = produto.link
+    ? '<a class="link-produto" href="' + escapar(produto.link) + '" target="_blank" rel="noopener noreferrer">Ver produto ↗</a>'
+    : '<span class="link-indisponivel">Link não encontrado</span>';
+
+  return '<article class="produto-encontrado">' +
+    imagem +
+    '<div class="dados-produto"><small>' + escapar(produto.loja || "Loja não informada") + '</small>' +
+    '<h4>' + escapar(produto.nome || "Produto") + '</h4>' +
+    '<strong class="preco-produto">' + escapar(produto.preco || "Preço não encontrado") + '</strong>' +
+    link +
+    (produto.observacao ? '<p>' + escapar(produto.observacao) + '</p>' : '') +
+    '</div></article>';
+}
+
+function prepararPesquisaMateriais() {
+  const formulario = document.querySelector("#form-pesquisa-material");
+  if (!formulario) return;
+
+  formulario.addEventListener("submit", async evento => {
+    evento.preventDefault();
+    const campo = document.querySelector("#pesquisa-material");
+    const botao = formulario.querySelector("button");
+    const resultado = document.querySelector("#resultado-materiais");
+    const termo = campo.value.trim();
+    if (termo.length < 2) return;
+
+    botao.disabled = true;
+    botao.textContent = "Pesquisando...";
+    resultado.innerHTML = '<p class="aviso-pesquisa">Procurando preços e lojas...</p>';
+
+    try {
+      const resposta = await fetch("/api/materiais", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ termo })
+      });
+      const dados = await resposta.json();
+      if (!resposta.ok) throw new Error(dados.erro || "A pesquisa falhou.");
+
+      resultado.innerHTML = dados.produtos?.length
+        ? '<div class="grade-produtos">' + dados.produtos.map(cartaoProduto).join("") + '</div>' +
+          '<p class="nota-precos">Confira o preço, o frete e a segurança da loja antes de comprar. Os valores podem mudar.</p>'
+        : '<p class="aviso-pesquisa">Nenhum produto foi encontrado.</p>';
+    } catch (falha) {
+      resultado.innerHTML = '<p class="erro-pesquisa">' + escapar(falha.message) + '</p>';
+    } finally {
+      botao.disabled = false;
+      botao.textContent = "Pesquisar";
+    }
+  });
+}
+
 function montarMateriais(projeto) {
   const componentes = projeto.componentes_planejados || [];
   const esteticos = projeto.materiais_esteticos?.opcoes || [];
@@ -86,11 +142,23 @@ function montarMateriais(projeto) {
   ).join("");
 
   document.querySelector("#materiais").innerHTML =
+    '<section class="pesquisa-materiais">' +
+      '<p class="etiqueta-pesquisa">PESQUISA COM IA</p>' +
+      '<h3>Encontrar material</h3>' +
+      '<p>Digite o componente para procurar opções, preços e lojas.</p>' +
+      '<form id="form-pesquisa-material" class="form-pesquisa-material">' +
+        '<label for="pesquisa-material">Material</label>' +
+        '<div class="linha-pesquisa"><input id="pesquisa-material" maxlength="100" placeholder="Ex.: ESP32 DevKit V1" required>' +
+        '<button type="submit">Pesquisar</button></div>' +
+      '</form><div id="resultado-materiais" aria-live="polite"></div>' +
+    '</section>' +
     bloco("Componentes planejados", lista(componentes)) +
     '<div class="grade-detalhes" style="margin-top:22px">' +
       bloco("Materiais de estrutura e acabamento", esteticos.length ? '<ul class="lista-materiais">' + cardsEsteticos + "</ul>" : "<p>Nenhum material registrado.</p>") +
       bloco("Componentes pesquisados", pesquisados.length ? '<ul class="lista-materiais">' + cardsPesquisados + "</ul>" : "<p>Nenhum componente pesquisado.</p>") +
     "</div>";
+
+  prepararPesquisaMateriais();
 }
 
 function montarImagens(projeto) {
