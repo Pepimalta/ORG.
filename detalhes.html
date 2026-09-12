@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes | Minha Oficina</title>
+  <link rel="stylesheet" href="css/style.css?v=20260912-3">
+</head>
+<body>
+  <header class="cabecalho cabecalho-projeto">
+    <div class="identidade-projeto">
+      <a class="voltar" id="voltar-lista" href="./">← Voltar</a>
+      <span class="etiqueta">MINHA OFICINA</span>
+      <h1 id="titulo-item">Detalhes</h1>
+      <div class="metadados-projeto">
+        <span class="selo-detalhe" id="status-item-detalhe">Carregando</span>
+        <span class="selo-detalhe secundario" id="categoria-item">Item</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <div id="detalhes-carregando" class="detalhes-carregando">Carregando detalhes...</div>
+    <div id="detalhes-erro" class="detalhes-erro" hidden>
+      <h2>Item não encontrado</h2>
+      <p>Não foi possível localizar este registro. Volte para a lista e tente novamente.</p>
+    </div>
+
+    <article id="detalhes-item" hidden>
+      <p class="objetivo-destaque" id="objetivo-item"></p>
+
+      <nav class="abas-detalhe" aria-label="Seções do item">
+        <button class="aba-detalhe ativa" type="button" data-painel="visao-geral">Visão geral</button>
+        <button class="aba-detalhe" type="button" data-painel="conteudo-completo">Conteúdo completo</button>
+        <button class="aba-detalhe" type="button" data-painel="etapas">Etapas</button>
+        <button class="aba-detalhe" type="button" data-painel="materiais">Materiais</button>
+        <button class="aba-detalhe" type="button" data-painel="imagens">Imagens</button>
+        <button class="aba-detalhe" type="button" data-painel="anotacoes">Anotações</button>
+      </nav>
+
+      <section class="painel-detalhe ativo" id="visao-geral"></section>
+      <section class="painel-detalhe" id="conteudo-completo"></section>
+      <section class="painel-detalhe" id="etapas"></section>
+      <section class="painel-detalhe" id="materiais"></section>
+      <section class="painel-detalhe" id="imagens"></section>
+      <section class="painel-detalhe" id="anotacoes"></section>
+    </article>
+  </main>
+
+  <footer>
+    <span>MINHA OFICINA</span>
+    <span>ARQUIVO DE IDEIAS, JOGOS E MATÉRIAS</span>
+  </footer>
+
+  <script src="js/detalhes.js?v=20260912-3"></script>
+</body>
+</html>
