@@ -813,3 +813,17 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+
+.botao-externo {
+  padding: 12px 14px;
+  color: var(--tinta);
+  background: var(--papel-claro);
+  border: 2px solid var(--tinta);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-externo:hover {
+  background: var(--amarelo-claro);
+}
