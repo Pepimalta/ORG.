@@ -1,0 +1,161 @@
+[
+  {
+    "id": "the-last-claw",
+    "nome": "The Last Claw",
+    "categoria": "História",
+    "status": "Em desenvolvimento",
+    "autor": "Pepi",
+    "descricao": "História criada por Pepi sobre um mundo em que humanos e gnomos coexistem, combinando evolução biológica, tecnologia extremamente avançada e magia/ocultismo. Tom é o protagonista.",
+    "objetivo": "Desenvolver o universo, os personagens, os sistemas de poderes e magia e a trama geral de The Last Claw antes de avançar detalhadamente pelos próximos capítulos.",
+    "visao_do_mundo": {
+      "povos": ["Humanos", "Gnomos"],
+      "gnomos": {
+        "altura_aproximada": "8 metros",
+        "sociedade": "Extremamente avançada, organizada e aparentemente quase perfeita. Mesmo possuindo tecnologia absurda, vivem de maneira simples porque não precisam de mais.",
+        "capacidades_registradas": ["Podem correr mais rápido que a luz.", "Não precisam comer.", "Possuem tecnologia extremamente avançada."],
+        "modo_de_pensar": "Não pensam como humanos e não apresentam da mesma forma julgamento, insulto ou malícia emocional humana.",
+        "revelacao_futura": "Os gnomos não são realmente perfeitos. Essa falha deve ser revelada mais tarde na história, e a história de Yara é uma demonstração disso."
+      },
+      "humanos": "Historicamente sentiram inveja dos gnomos por considerá-los mais avançados, inteligentes e completos. São descritos como mais impulsivos, agressivos e instáveis.",
+      "divisao": "O mundo possui um lado humano marcado por caos, desigualdade e conflito e um lado gnomídio marcado por avanço, equilíbrio e controle."
+    },
+    "cronologia": {
+      "era_da_paz_gnomidia": "Humanos e gnomos coexistiam; os gnomos ensinavam e os humanos aprendiam.",
+      "1958": "A guerra entre humanos e gnomos se espalha. Não há tratados ou negociação: a paz dá lugar à guerra. Os humanos atacam movidos por ódio e os gnomos agem de forma precisa e fria, com enorme diferença de poder.",
+      "episodio_da_caverna": "Um gnomo recebe ordem de eliminar um humano escondido em uma caverna. O humano grita 'ESPERA!' e oferece informações. O gnomo interrompe a execução e o leva para análise porque os gnomos estão cansados da guerra.",
+      "2009": "Uma família de enorme importância pede proteção aos gnomos. Loren nasce nesse contexto. Os gnomos decidem infiltrar um deles em uma família humana e Tom é escolhido.",
+      "infiltracao_de_tom": "O plano é esperar um nascimento, copiar o bebê, substituir Tom e alterar mentalmente a percepção dos pais para que acreditem que Tom sempre foi aquele filho e aceitem seu nome.",
+      "2023": "Tom e Loren cresceram juntos e são inseparáveis e melhores amigos. A parte escolar da história acontece nesse período."
+    },
+    "regras_gnomidias": {
+      "morte": {
+        "regra_central": "Um gnomo só morre quando quer morrer.",
+        "consequencia": "Destruição física comum, cortes, explosões, esmagamento e decapitação não matam permanentemente um gnomo.",
+        "morte_por_terceiro": "Outra pessoa só consegue efetivamente matar um gnomo causando sofrimento suficiente para que ele escolha ou queira morrer.",
+        "regeneracao": "Danos físicos não encerram a existência do gnomo; eles podem regenerar ou continuar.",
+        "buraco_negro": "Nem um buraco negro mataria um gnomo. Ele poderia ficar preso girando ali e incapaz de sair, mas continuaria vivo."
+      },
+      "evolucao_e_familias": {
+        "regra": "Existe um sistema natural de evolução. Cada família gnomídia possui uma habilidade associada ao controle de uma parte, função ou sistema do corpo.",
+        "familia_tom": "Todos os membros controlam o corpo inteiro, mas cada um possui uma ênfase diferente.",
+        "familia_yara": "Controle completo do cabelo."
+      }
+    },
+    "personagens": {
+      "Tom": {
+        "papel": "Protagonista",
+        "origem": "Gnomo infiltrado entre humanos.",
+        "relacoes": ["Melhor amigo de Loren", "Irmão mais velho de Noah", "Desenvolve relacionamento com Aurora"],
+        "habilidade": "Controla o próprio corpo e evoluiu esse controle para o espaço ao redor, permitindo criar um espaço infinito.",
+        "manipulacao_de_materia": "Possui algum controle em nível atômico/matéria, mas para manipular diretamente algo como a Terra ou um material precisa tocar nele. Noah é muito superior nessa área."
+      },
+      "Loren": {
+        "papel": "Melhor amigo de Tom",
+        "contexto": "Nasce em uma família altamente importante ligada à continuidade das fêmeas gnomídias.",
+        "relacionamento": "Namora Lily."
+      },
+      "Aurora": {
+        "papel": "Interesse amoroso e depois namorada de Tom.",
+        "habilidades": "Não é gnomo e não possui habilidades."
+      },
+      "Lily": {
+        "papel": "Namorada de Loren.",
+        "habilidades": "Não é gnomo e não possui habilidades."
+      },
+      "mae_de_tom": {
+        "familia": "Mãe de Tom e Noah.",
+        "papel_no_mundo": "É quem organiza e faz as coisas acontecerem no mundo gnomídio, sem ser literalmente uma governante ou comandante.",
+        "especializacao": "Cérebro; controla o cérebro 100%.",
+        "inteligencia": "Superior à de qualquer gnomo ou humano e capaz de desenvolver tecnologias extremamente avançadas em segundos.",
+        "incubadoras": "Criou incubadoras artificiais, eliminando a necessidade de depender continuamente de fêmeas para reprodução."
+      },
+      "pai_de_tom": {
+        "familia": "Pai de Tom e Noah.",
+        "especializacao": "Sangue. Controla o corpo inteiro como os demais membros da família, com domínio especialmente forte do sangue."
+      },
+      "Noah": {
+        "familia": "Irmão mais novo de Tom.",
+        "motivacao_inicial": "Sente inveja de Tom. Inicialmente não havia sido designado para missão alguma.",
+        "trajetoria": "Foge e entra na mesma organização da qual Yara participa. Mais tarde enfrenta Tom e vence. Fica triste com o que fez ao irmão, abandona a organização e passa a treinar com Tom.",
+        "especializacao": "Átomos.",
+        "habilidades": ["Criar átomos", "Organizar e reorganizar átomos", "Manipular matéria ao redor à distância, sem precisar tocar", "Atravessar paredes ou objetos reorganizando perfeitamente os próprios átomos e os do obstáculo"],
+        "comparacao_com_tom": "Seu domínio atômico é muito superior ao de Tom e ele tem potencial para ser mais forte.",
+        "espaco_infinito": "Pode chegar a produzir algo semelhante ao espaço infinito de Tom por outra rota, usando criação/manipulação de átomos e a ideia de dobrar o espaço através deles.",
+        "inspiracao": "A ideia da manipulação de átomos foi inspirada em Atom Eve, de Invincible."
+      },
+      "Yara": {
+        "papel": "Professora, gnomo e antagonista.",
+        "passado": "Veio de uma família que poderia ser descrita conceitualmente como fracassada, embora esse termo não exista dentro do mundo. Todos acreditavam que sua família simplesmente havia escolhido morrer, mas na realidade seus membros foram levados a querer a morte por sofrimento causado por terceiros.",
+        "motivacao": "Quer vingança contra os gnomos.",
+        "organizacao": "Participa de uma organização que não pertence a ela; é liderada por outro gnomo que se sentiu traído.",
+        "habilidade": "Controle completo do cabelo, podendo fazer o que quiser com ele.",
+        "tecnica_boom": "Cria flores com o próprio cabelo e, ao dizer 'boom', faz a flor explodir. É apenas uma técnica dentro do controle total do cabelo.",
+        "destino": "Yara morre mais tarde. As circunstâncias exatas ainda não foram definidas. Após sua morte, Tom planeja eliminar a organização inteira."
+      },
+      "Marcia_Cristina": {
+        "papel": "Vilã que ajuda Yara em missões e batalhas.",
+        "base_visual": "Inspirada na professora real de matemática de Pepi, usando o nome Márcia Cristina.",
+        "personalidade": "Boa professora, ensina muito, não é chata e fala de maneira sistemática, controlada e formal, mesmo com sotaque carioca.",
+        "aparencia_definida": ["Óculos grandes", "Rosto quadrado, normal até o queixo", "Queixo quadrado", "Pouco pescoço visível e papo aparente", "Senhora um pouco gordinha", "Visual de professora comum, sem aparência óbvia de bruxa"],
+        "origem": "Foi fundida com um demônio durante a infância.",
+        "natureza": "Xamã e bruxa.",
+        "capacidades": ["Força de demônio", "Realizar magia e rituais", "Lançar maldições", "Remover maldições", "Conhecer e realizar qualquer tipo de magia"],
+        "exemplo": "Pode realizar um ritual para obter ou criar algo como um par de fones de ouvido.",
+        "linguagem_magica": "A magia possui uma invocação inicial que pode ser dita em português comum por qualquer pessoa. Depois, Márcia recita palavras de um vocabulário/língua mágica própria; essa parte especial é o que efetivamente faz a magia acontecer. O vocabulário e o alfabeto ainda serão criados por Pepi."
+      }
+    },
+    "familia_de_tom": {
+      "membros": ["Mãe", "Pai", "Tom", "Noah"],
+      "regra": "Todos controlam o corpo inteiro, cada um com uma especialização: mãe no cérebro, pai no sangue, Tom com evolução do controle corporal para o espaço ao redor e Noah nos átomos."
+    },
+    "organizacao_antagonista": {
+      "lideranca": "Não pertence a Yara. É de outro gnomo que se sentiu traído.",
+      "membros_conhecidos": ["Yara", "Márcia Cristina", "Noah, temporariamente"],
+      "situacao": "Após a morte de Yara, Tom decide eliminar a organização. Nesse processo ocorre o confronto em que Noah vence Tom."
+    },
+    "magia_e_ocultismo": {
+      "conceito": "The Last Claw mistura o lado que parece mais real, envolvendo vida alienígena, tecnologia, biologia e evolução, com magia e ocultismo explícitos.",
+      "distincao": "A magia é diferente dos poderes biológicos/evolutivos dos gnomos.",
+      "sistema_de_marcia": "Invocação em linguagem comum seguida por palavras da língua mágica especial que realmente ativam o efeito."
+    },
+    "historia_escolar_e_romance": {
+      "vida_normal": "Em 2023, Tom e Loren vivem como adolescentes, com escola, corredores e rotina normal.",
+      "Lily": "Loren revela que está namorando Lily; a relação é leve e natural.",
+      "Aurora": "Loren apresenta Aurora a Tom. Ela comenta que Loren fala muito sobre Tom, deixando Tom envergonhado.",
+      "aproximacao": "Tom e Aurora se aproximam gradualmente através de conversas, momentos simples, olhares e brincadeiras.",
+      "confissao": "Tom e Aurora confessam os sentimentos e se beijam. Loren interrompe com uma fala do tipo 'Opa… tô atrapalhando alguma coisa?', deixando os dois constrangidos; Aurora ri e Tom fica irritado.",
+      "primeiro_encontro": "No sábado, eles vão à praia, caminham, tomam sorvete e conversam. Aurora pergunta se agora é namorada de Tom; ele responde 'Se você quiser', ela diz 'Eu quero', e os dois dão as mãos ao pôr do sol."
+    },
+    "capitulos_ate_agora": [
+      {"capitulo": 1, "nome": "Origem", "status": "Estrutura definida", "conteudo": "Mundo, relação entre humanos e gnomos, guerra e bases históricas."},
+      {"capitulo": 2, "nome": "Vida normal", "status": "Estrutura definida", "conteudo": "Vida escolar, Tom e Loren, apresentação de Lily e Aurora."},
+      {"capitulo": 3, "nome": "Aproximação", "status": "Estrutura definida", "conteudo": "Desenvolvimento do relacionamento entre Tom e Aurora até o namoro."}
+    ],
+    "etapas_do_projeto": [
+      {"etapa": 1, "nome": "Construção do mundo", "status": "Em andamento", "descricao": "Organizar as regras dos humanos, gnomos, história do mundo, evolução e tecnologia."},
+      {"etapa": 2, "nome": "Sistema gnomídio", "status": "Em andamento", "descricao": "Consolidar famílias, especializações corporais, evolução e regra de morte dos gnomos."},
+      {"etapa": 3, "nome": "Personagens", "status": "Em andamento", "descricao": "Desenvolver Tom, Loren, Aurora, Lily, família de Tom, Yara, Márcia Cristina e demais personagens."},
+      {"etapa": 4, "nome": "Sistema mágico", "status": "Em andamento", "descricao": "Definir magia, ocultismo e o funcionamento das invocações de Márcia Cristina."},
+      {"etapa": 5, "nome": "Língua mágica", "status": "Pendente", "descricao": "Pepi ainda vai criar o vocabulário e o alfabeto usados na parte verdadeira dos feitiços de Márcia Cristina."},
+      {"etapa": 6, "nome": "Organização antagonista", "status": "Em definição", "descricao": "A organização existe e reúne Yara, Márcia e temporariamente Noah, mas seu líder e outros detalhes ainda não foram definidos."},
+      {"etapa": 7, "nome": "Próximos capítulos", "status": "Pendente", "descricao": "Pepi decidiu desenvolver melhor personagens, mundo e trama ampla antes de escrever os capítulos seguintes em detalhe."},
+      {"etapa": 8, "nome": "Design visual", "status": "Em andamento", "descricao": "Desenvolver referências visuais dos personagens. Márcia Cristina está sendo estudada em estilo mangá a partir de referência visual compartilhada na conversa."}
+    ],
+    "imagens_e_rascunhos": {
+      "existem": true,
+      "descricao": ["Foram compartilhadas na conversa imagens de referência visual para Márcia Cristina e foram feitos testes de geração em estilo mangá."],
+      "observacao": "As imagens não foram adicionadas ao repositório e, portanto, não estão registradas como arquivos salvos no site."
+    },
+    "pendencias": [
+      "Criar o vocabulário e o alfabeto da língua mágica de Márcia Cristina.",
+      "Definir a identidade e os detalhes do gnomo que lidera a organização antagonista.",
+      "Definir as circunstâncias exatas da morte de Yara.",
+      "Continuar o desenvolvimento amplo da trama antes de escrever os próximos capítulos em detalhe.",
+      "Continuar o design visual de Márcia Cristina em mangá, mantendo aparência de professora comum e maior fidelidade à referência."
+    ],
+    "anotacoes": {
+      "regra_de_colaboracao": "Pepi cria as ideias e o cânone de The Last Claw. O ChatGPT deve organizar, estruturar, resumir e apontar consistência, sem inventar poderes, limitações, acontecimentos, nomes ou elementos novos, a menos que Pepi peça explicitamente por ideias.",
+      "nao_canon": "Ideias anteriormente sugeridas pelo ChatGPT sem definição de Pepi não devem ser tratadas como cânone."
+    }
+  }
+]
