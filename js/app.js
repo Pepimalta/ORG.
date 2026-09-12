@@ -87,29 +87,28 @@ function descricaoDoItem(item) {
 
 function criarCartao(item) {
   const cartao = document.createElement("article");
-  cartao.className = "cartao";
+  cartao.className = "cartao cartao-clicavel";
 
-  if (tipo === "projetos") {
-    const abrirDetalhes = () => {
-      window.location.href = "detalhes.html?id=" + encodeURIComponent(item.id);
-    };
+  const abrirDetalhes = () => {
+    const id = encodeURIComponent(item.id);
+    const tipoCodificado = encodeURIComponent(tipo);
+    window.location.href = "../detalhes.html?tipo=" + tipoCodificado + "&id=" + id;
+  };
 
-    cartao.classList.add("cartao-clicavel");
-    cartao.tabIndex = 0;
-    cartao.setAttribute("role", "link");
-    cartao.setAttribute("aria-label", "Abrir detalhes de " + (item.nome || item.titulo || "projeto"));
+  cartao.tabIndex = 0;
+  cartao.setAttribute("role", "link");
+  cartao.setAttribute("aria-label", "Abrir detalhes de " + (item.nome || item.titulo || configuracao.singular));
 
-    cartao.addEventListener("click", evento => {
-      if (!evento.target.closest("button")) abrirDetalhes();
-    });
+  cartao.addEventListener("click", evento => {
+    if (!evento.target.closest("button")) abrirDetalhes();
+  });
 
-    cartao.addEventListener("keydown", evento => {
-      if (evento.key === "Enter" || evento.key === " ") {
-        evento.preventDefault();
-        abrirDetalhes();
-      }
-    });
-  }
+  cartao.addEventListener("keydown", evento => {
+    if (evento.key === "Enter" || evento.key === " ") {
+      evento.preventDefault();
+      abrirDetalhes();
+    }
+  });
 
   const status = document.createElement("span");
   status.className = "status";
@@ -124,7 +123,7 @@ function criarCartao(item) {
 
   const dica = document.createElement("span");
   dica.className = "dica-detalhes";
-  dica.textContent = tipo === "projetos" ? "Abrir detalhes →" : "";
+  dica.textContent = "Abrir detalhes →";
 
   const rodape = document.createElement("div");
   rodape.className = "rodape-cartao";
@@ -140,9 +139,7 @@ function criarCartao(item) {
   excluir.addEventListener("click", () => excluirItem(item));
 
   rodape.append(data, excluir);
-  cartao.append(status, titulo, descricao);
-  if (tipo === "projetos") cartao.append(dica);
-  cartao.append(rodape);
+  cartao.append(status, titulo, descricao, dica, rodape);
   return cartao;
 }
 
