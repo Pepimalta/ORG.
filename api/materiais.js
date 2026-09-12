@@ -84,7 +84,10 @@ Regras: no máximo 6 produtos; use apenas links encontrados na pesquisa; não in
 
     const texto = dados?.candidates?.[0]?.content?.parts
       ?.map(parte => parte.text || "")
-      .join("") || "";
+      .join("") ||
+      dados?.output_text ||
+      dados?.outputs?.map(item => item?.text || item?.content?.[0]?.text || "").join("") ||
+      "";
 
     const resultado = JSON.parse(limparJson(texto));
     const produtos = Array.isArray(resultado.produtos)
