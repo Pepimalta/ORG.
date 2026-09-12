@@ -111,14 +111,22 @@ function prepararPesquisaMateriais() {
         body: JSON.stringify({ termo })
       });
       const dados = await resposta.json();
-      if (!resposta.ok) throw new Error(dados.erro || "A pesquisa falhou.");
+      if (!resposta.ok) {
+        const falha = new Error(dados.erro || "A pesquisa falhou.");
+        falha.status = resposta.status;
+        throw falha;
+      }
 
       resultado.innerHTML = dados.produtos?.length
         ? '<div class="grade-produtos">' + dados.produtos.map(cartaoProduto).join("") + '</div>' +
           '<p class="nota-precos">Confira o preço, o frete e a segurança da loja antes de comprar. Os valores podem mudar.</p>'
         : '<p class="aviso-pesquisa">Nenhum produto foi encontrado.</p>';
     } catch (falha) {
-      resultado.innerHTML = '<p class="erro-pesquisa">' + escapar(falha.message) + '</p>';
+      const buscaExterna = "https://www.google.com/search?tbm=shop&q=" + encodeURIComponent(termo);
+      const alternativa = falha.status === 429
+        ? '<a class="botao-busca-externa" href="' + buscaExterna + '" target="_blank" rel="noopener noreferrer">Abrir Google Shopping ↗</a>'
+        : "";
+      resultado.innerHTML = '<p class="erro-pesquisa">' + escapar(falha.message) + '</p>' + alternativa;
     } finally {
       botao.disabled = false;
       botao.textContent = "Pesquisar";
