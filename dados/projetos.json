@@ -600,5 +600,344 @@
       "Criar os sprites iniciais de Math.",
       "Decidir posteriormente quais rascunhos devem ser adicionados ao repositório público."
     ]
+  },
+  {
+    "id": "maquina-comida-ficticia",
+    "nome": "Máquina de Comida Fictícia",
+    "categoria": "Engenharia / Eletrônica",
+    "status": "Planejamento",
+    "autor": "Pepi",
+    "inspiracao": {
+      "principal": "Máquina Always Fresh* Frozen! de Five Nights at Freddy's: Help Wanted 2",
+      "objetivo_visual": "Criar uma máquina física de comida fictícia com aparência inspirada na máquina do jogo, mas com funcionamento eletrônico próprio e construção caseira."
+    },
+    "objetivo": "Construir uma máquina física em que a pessoa escolhe uma comida em um tablet removível e, ao pressionar um botão físico, um circuito eletrônico aciona um mecanismo motorizado que abre o compartimento e libera um pote leve para a área de retirada.",
+    "funcionamento": {
+      "resumo": "O tablet funciona como cardápio visual independente. O botão físico envia um sinal a um microcontrolador, que comanda um servo. O servo movimenta uma trava ou alavanca ligada à porta do compartimento. A porta abre, o pote é liberado e cai por gravidade na área inferior de retirada. Depois, o mecanismo é rearmado para o próximo uso.",
+      "sequencia": [
+        "O tablet fica preso à frente da máquina em um suporte removível.",
+        "A pessoa escolhe a comida no cardápio do tablet.",
+        "O tablet não precisa estar eletricamente ligado ao mecanismo da máquina na versão inicial.",
+        "O operador ou usuário aperta o botão físico.",
+        "O botão envia um sinal ao microcontrolador.",
+        "O microcontrolador comanda o servo para girar até a posição de abertura.",
+        "O braço do servo movimenta uma trava, lingueta ou pequena alavanca mecânica.",
+        "A porta do compartimento é destravada e abre, liberando o pote.",
+        "O pote desce por gravidade até o compartimento inferior de retirada.",
+        "Após um pequeno intervalo, o servo retorna à posição inicial.",
+        "A porta é fechada e o compartimento é recarregado para a próxima utilização."
+      ]
+    },
+    "decisoes": {
+      "nome_oficial": "Máquina de Comida Fictícia",
+      "estrutura_inicial": "Papelão reforçado, com possibilidade de trocar por material mais resistente depois dos testes.",
+      "acionamento": "Eletrônico, por botão físico e microcontrolador.",
+      "atuador": "Servo motor, por ser mais simples de controlar em posições de abrir e fechar do que um motor DC comum.",
+      "cardapio": "Tablet removível usado como interface visual, sem necessidade de ligação elétrica com o mecanismo na primeira versão.",
+      "porta": "Porta ou tampa articulada no compartimento de armazenamento, aberta por uma trava ou alavanca movimentada pelo servo.",
+      "queda_do_pote": "O pote é liberado e desce por gravidade para a área de retirada.",
+      "soldagem": "A versão de testes pode ser montada em protoboard. A versão definitiva pode ser soldada em placa perfurada depois que Pepi aprender e testar a soldagem.",
+      "programacao": "O código deverá ler o botão, mover o servo para abrir, esperar um intervalo e retornar o servo à posição inicial.",
+      "seguranca_eletrica": "A alimentação do servo e do controlador deve ser compatível, com GND comum. O servo não deve ser ligado a uma tensão acima da especificada pelo fabricante."
+    },
+    "design": {
+      "conceito": "Gabinete vertical em formato de caixa retangular, inspirado em uma máquina de alimentos, com tablet e botão na parte frontal e abertura de retirada na parte inferior.",
+      "elementos_planejados": [
+        "Corpo principal retangular",
+        "Tablet removível na frente",
+        "Botão físico ao lado do tablet",
+        "Compartimento interno para o pote",
+        "Porta ou tampa articulada do compartimento",
+        "Servo e mecanismo de trava escondidos no interior",
+        "Canal ou rampa interna para conduzir o pote",
+        "Compartimento inferior de retirada",
+        "Tampa traseira ou lateral removível para manutenção da eletrônica"
+      ],
+      "medidas": "Ainda não definidas; serão escolhidas depois de medir o tablet, o pote e o espaço necessário para o mecanismo."
+    },
+    "forcas_e_mecanica": {
+      "principio": "O servo não precisa levantar o peso do pote; ele deve preferencialmente apenas movimentar uma trava ou lingueta. A gravidade realiza a queda do pote.",
+      "servo": "O braço do servo gira e puxa ou empurra a trava da porta.",
+      "trava": "Pode ser feita com arame rígido, uma lingueta plástica, uma pequena chapa ou peça de madeira, dependendo do material final da máquina.",
+      "porta": "Articulada por dobradiça pequena ou dobradiça flexível reforçada. Deve abrir sem raspar nas laterais.",
+      "rampa": "Uma rampa ou guia interna reduz a chance de o pote virar ou ficar preso durante a queda.",
+      "reforco": "A região do servo, da dobradiça e da trava deve receber camadas extras de papelão, madeira fina ou outra placa rígida para não deformar."
+    },
+    "eletronica": {
+      "controlador_principal": {
+        "componente": "Arduino Nano compatível ou ESP32 DevKit",
+        "status": "Planejado; escolher um dos dois na montagem. Arduino Nano é suficiente para a função básica."
+      },
+      "atuador": {
+        "componente": "Servo motor",
+        "modelo_inicial_sugerido": "MG90S para uma trava leve; MG996R se o mecanismo exigir mais força",
+        "quantidade": 1,
+        "status": "Planejado"
+      },
+      "entrada": {
+        "componente": "Botão de pressão momentâneo normalmente aberto",
+        "quantidade": 1,
+        "funcao": "Solicitar a abertura do compartimento"
+      },
+      "resistor_botao": {
+        "componente": "Resistor de 10 kΩ",
+        "quantidade": 1,
+        "status": "Opcional se for usado o resistor pull-up interno do microcontrolador"
+      },
+      "alimentacao": {
+        "opcao_prototipo": "Fonte USB de 5 V para o controlador e fonte de 5 V adequada para o servo, podendo ser uma única fonte se suportar a corrente necessária.",
+        "requisito": "Usar GND comum entre controlador e servo.",
+        "observacao": "A corrente necessária depende do servo escolhido. Não definir amperagem final antes de escolher e testar o servo."
+      },
+      "protoboard": {
+        "quantidade": 1,
+        "uso": "Montagem e testes antes da soldagem"
+      },
+      "jumpers": {
+        "quantidade": "1 conjunto",
+        "uso": "Ligações temporárias na protoboard"
+      },
+      "chave_geral": {
+        "componente": "Interruptor liga/desliga",
+        "quantidade": 1,
+        "status": "Recomendado para a versão final"
+      },
+      "indicadores_opcionais": [
+        "LED de ligado com resistor apropriado",
+        "LED de acionamento ou pronto"
+      ],
+      "programacao_prevista": [
+        "Configurar botão como entrada.",
+        "Detectar o pressionamento com debounce.",
+        "Mover o servo da posição fechada para a posição aberta.",
+        "Aguardar tempo suficiente para o pote cair.",
+        "Retornar o servo para a posição fechada.",
+        "Ignorar novos comandos durante o ciclo para evitar acionamentos repetidos."
+      ]
+    },
+    "componentes_planejados": [
+      "1 Arduino Nano compatível ou 1 ESP32 DevKit",
+      "1 servo MG90S ou equivalente para o primeiro protótipo",
+      "1 servo MG996R opcional se o mecanismo precisar de mais torque",
+      "1 botão de pressão momentâneo normalmente aberto",
+      "1 protoboard",
+      "1 conjunto de jumpers macho-macho e macho-fêmea",
+      "1 fonte USB 5 V para testes",
+      "1 cabo USB compatível com o microcontrolador escolhido",
+      "1 interruptor liga/desliga para a versão final",
+      "Fios flexíveis para a montagem definitiva",
+      "Conectores ou bornes para facilitar manutenção",
+      "1 placa perfurada ou ilhada para a versão soldada",
+      "1 resistor de 10 kΩ caso não seja usado pull-up interno",
+      "LEDs e resistores opcionais para indicação",
+      "Papelão ondulado grosso para a estrutura inicial",
+      "Papelão extra para reforços internos",
+      "Cola quente e bastões de cola",
+      "Fita reforçada para protótipos e dobradiças temporárias",
+      "1 dobradiça pequena ou sistema de dobradiça reforçada",
+      "Arame rígido, lingueta plástica ou pequena chapa para a trava",
+      "Parafusos pequenos, porcas e arruelas para fixação do servo e dobradiça",
+      "Abraçadeiras de nylon para organização dos fios",
+      "Tubos termo-retráteis para isolamento",
+      "Potes plásticos leves e não quebráveis",
+      "Material para rampa ou guia interna do pote",
+      "Velcro ou tira de tecido para prender o tablet de forma removível"
+    ],
+    "soldagem_e_ferramentas": {
+      "objetivo": "Testar primeiro sem solda e depois montar uma versão definitiva organizada e soldada.",
+      "materiais": [
+        "Ferro de solda de aproximadamente 40 a 60 W, preferencialmente com controle de temperatura",
+        "Suporte para ferro de solda",
+        "Estanho fino próprio para eletrônica",
+        "Fluxo para eletrônica",
+        "Esponja de latão ou limpador de ponta",
+        "Sugador de solda ou malha dessoldadora",
+        "Alicate de corte",
+        "Desencapador de fios",
+        "Alicate de bico",
+        "Multímetro",
+        "Tubos termo-retráteis",
+        "Placa perfurada ou ilhada"
+      ],
+      "aprendizados_planejados": [
+        "Identificar 5 V, GND e sinal do servo",
+        "Montar circuito simples em protoboard",
+        "Usar multímetro para verificar tensão e continuidade",
+        "Estanhar fios",
+        "Soldar fios e pinos sem criar curto-circuito",
+        "Usar termo-retrátil para isolar emendas",
+        "Testar o circuito antes de fechar a carcaça"
+      ]
+    },
+    "materiais_esteticos": {
+      "prioridade": "Começar com materiais fáceis de cortar e modificar; melhorar a carcaça depois que o mecanismo funcionar.",
+      "opcoes": [
+        {
+          "material": "Papelão ondulado reforçado",
+          "uso": "Estrutura principal e primeiro protótipo"
+        },
+        {
+          "material": "Papel Paraná ou papelão cinza rígido",
+          "uso": "Painéis mais lisos, reforços e acabamento"
+        },
+        {
+          "material": "PVC expandido fino",
+          "uso": "Possível substituto futuro do papelão em partes que precisarem de maior resistência"
+        },
+        {
+          "material": "MDF fino",
+          "uso": "Possível base, suporte do servo ou reforço de dobradiça"
+        }
+      ],
+      "acabamento": [
+        "Pintura ou revestimento externo inspirado na máquina do jogo",
+        "Impressões ou adesivos decorativos",
+        "Acabamento das bordas do papelão com fita ou papel"
+      ],
+      "detalhes_visuais": [
+        "Tablet na área superior frontal",
+        "Botão físico ao lado do tablet",
+        "Abertura de retirada na parte inferior",
+        "Visual de máquina fictícia de alimentos"
+      ],
+      "regra_estrutural": "Peças sujeitas a esforço, especialmente suporte do servo, trava e dobradiça, devem ser reforçadas mesmo que a carcaça principal seja de papelão."
+    },
+    "etapas_do_projeto": [
+      {
+        "etapa": 1,
+        "nome": "Definição funcional",
+        "status": "Concluída",
+        "descricao": "Definir que a máquina terá cardápio em tablet, botão físico, circuito eletrônico, servo e porta de liberação do pote."
+      },
+      {
+        "etapa": 2,
+        "nome": "Escolha da arquitetura eletrônica",
+        "status": "Concluída em nível de projeto",
+        "descricao": "Usar microcontrolador, botão e servo como arquitetura básica. O modelo exato do controlador ainda será escolhido na compra ou montagem."
+      },
+      {
+        "etapa": 3,
+        "nome": "Definir medidas",
+        "status": "Pendente",
+        "descricao": "Medir tablet e pote para definir largura, altura e profundidade da máquina."
+      },
+      {
+        "etapa": 4,
+        "nome": "Protótipo eletrônico em bancada",
+        "status": "Pendente",
+        "descricao": "Montar botão, microcontrolador e servo em protoboard e testar o ciclo abrir-esperar-fechar."
+      },
+      {
+        "etapa": 5,
+        "nome": "Protótipo da trava",
+        "status": "Pendente",
+        "descricao": "Construir uma trava mecânica simples para que o servo apenas destrave a porta em vez de sustentar o peso do pote."
+      },
+      {
+        "etapa": 6,
+        "nome": "Teste de queda",
+        "status": "Pendente",
+        "descricao": "Testar pote, porta, rampa e compartimento inferior para eliminar travamentos."
+      },
+      {
+        "etapa": 7,
+        "nome": "Construção da carcaça",
+        "status": "Pendente",
+        "descricao": "Montar a caixa de papelão reforçado com acesso para manutenção."
+      },
+      {
+        "etapa": 8,
+        "nome": "Instalação da eletrônica",
+        "status": "Pendente",
+        "descricao": "Fixar microcontrolador, servo, botão, alimentação e fiação na carcaça."
+      },
+      {
+        "etapa": 9,
+        "nome": "Soldagem definitiva",
+        "status": "Pendente",
+        "descricao": "Depois que o circuito estiver comprovado na protoboard, transferir as conexões permanentes para placa perfurada e fios soldados."
+      },
+      {
+        "etapa": 10,
+        "nome": "Cardápio do tablet",
+        "status": "Pendente",
+        "descricao": "Criar a interface visual da máquina no tablet."
+      },
+      {
+        "etapa": 11,
+        "nome": "Acabamento",
+        "status": "Pendente",
+        "descricao": "Aplicar decoração e acabamento externo depois que a estrutura estiver funcionando."
+      },
+      {
+        "etapa": 12,
+        "nome": "Testes finais",
+        "status": "Pendente",
+        "descricao": "Repetir diversos ciclos e verificar botão, servo, trava, porta, queda do pote, alimentação e resistência da estrutura."
+      }
+    ],
+    "ideias_futuras": [
+      "Fazer o tablet enviar eletronicamente o pedido para a máquina em uma versão futura.",
+      "Criar vários compartimentos para diferentes comidas.",
+      "Usar vários servos, um para cada compartimento.",
+      "Adicionar sensores para detectar se existe um pote carregado.",
+      "Adicionar LEDs ou efeitos sonoros.",
+      "Trocar a carcaça de papelão por PVC expandido, MDF fino ou outro material mais resistente se os testes mostrarem necessidade."
+    ],
+    "imagens_e_rascunhos": {
+      "existem": true,
+      "descricao": [
+        "Imagem de referência da máquina Always Fresh* Frozen! do Help Wanted 2.",
+        "Rascunhos feitos por Pepi mostrando a frente retangular da máquina, o botão, o tablet, o compartimento inferior e ideias de mecanismo interno."
+      ],
+      "observacao": "As imagens foram compartilhadas na conversa, mas não foram adicionadas como arquivos ao repositório."
+    },
+    "componentes_pesquisados_e_decisoes": [
+      {
+        "componente": "Servo motor",
+        "decisao": "Preferido no lugar de motor DC para a primeira versão, porque permite comandar diretamente posições de abrir e fechar."
+      },
+      {
+        "componente": "Arduino Nano ou ESP32",
+        "decisao": "Ambos servem. O Arduino Nano é suficiente para a versão básica; o ESP32 facilita futuras expansões sem fio."
+      },
+      {
+        "componente": "Protoboard",
+        "decisao": "Usar durante os testes antes de soldar a versão definitiva."
+      },
+      {
+        "componente": "Papelão reforçado",
+        "decisao": "Mantido como material inicial da carcaça; poderá ser substituído se ficar frágil."
+      },
+      {
+        "componente": "Carretel, linha ou sistema semelhante ao de máquina de costura",
+        "decisao": "Não necessário na arquitetura atual; o servo pode movimentar diretamente uma trava ou alavanca."
+      }
+    ],
+    "criterios_de_sucesso": [
+      "Um único pressionamento do botão deve iniciar apenas um ciclo.",
+      "O servo deve abrir a trava de forma repetível.",
+      "O pote deve chegar ao compartimento inferior sem ficar preso.",
+      "O servo não deve precisar sustentar diretamente o peso do pote.",
+      "A eletrônica deve permanecer acessível para manutenção.",
+      "Os fios e conexões da versão final devem ficar isolados e firmes.",
+      "A estrutura não deve deformar na região da dobradiça e do servo.",
+      "O sistema deve poder ser recarregado e usado novamente sem desmontar toda a máquina."
+    ],
+    "pendencias": [
+      "Escolher entre Arduino Nano e ESP32 para a primeira montagem.",
+      "Escolher o servo definitivo depois de construir e testar a trava.",
+      "Definir medidas do tablet e do pote.",
+      "Definir medidas finais da máquina.",
+      "Desenhar a trava e a porta em detalhe.",
+      "Definir o tipo de dobradiça.",
+      "Definir a fonte depois da escolha definitiva do servo.",
+      "Montar e testar o circuito em protoboard.",
+      "Escrever e testar o programa do botão e servo.",
+      "Aprender e praticar soldagem antes da montagem definitiva.",
+      "Decidir se a carcaça final continuará em papelão ou será refeita em material mais rígido.",
+      "Criar o cardápio do tablet.",
+      "Decidir posteriormente quais rascunhos devem ser adicionados ao repositório público."
+    ]
   }
 ]
