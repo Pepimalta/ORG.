@@ -61,15 +61,26 @@
         "LED vermelho decorativo",
         "Acabamento cinza, grafite e preto"
       ],
+      "cabeca": {
+        "formato": "Cubo",
+        "medidas_cm": "8 x 8 x 8"
+      },
       "base": {
+        "medidas_cm": "8 x 8",
         "ideia_desenhada": "Base com ventosas para fixação.",
         "observacao": "Ventosas devem ser testadas porque funcionam melhor em superfícies lisas. Pode ser usada borracha antiderrapante como alternativa ou complemento."
       },
       "pescoco": {
+        "medidas_cm": {
+          "comprimento_aproximado": 8,
+          "largura_aproximada": 2
+        },
         "ideia": "Pescoço giratório em camadas, possivelmente movimentado por servo.",
         "status": "Opcional para a primeira versão funcional."
       },
       "braco": {
+        "comprimento_total_ombro_ate_faca_cm": 8,
+        "largura_aproximada_cm": 2,
         "estrutura": "Braço articulado com ombro, cotovelo e mecanismo terminal para segurar a faca.",
         "movimentos": "O número exato de articulações ainda será definido após o desenho mecânico.",
         "requisito": "Deve ter rigidez suficiente para raspar manteiga sem deformar ou perder posição."
@@ -258,8 +269,8 @@
       {
         "etapa": 3,
         "nome": "Dimensionamento",
-        "status": "Pendente",
-        "descricao": "Definir altura do robô, comprimentos do braço e alcance necessário."
+        "status": "Em andamento",
+        "descricao": "As medidas principais de cabeça, base, pescoço e braço já foram definidas; ainda faltam dimensões finais das articulações, garra e suportes."
       },
       {
         "etapa": 4,
@@ -385,7 +396,7 @@
       "Ter aparência bonita e coerente com a inspiração."
     ],
     "pendencias": [
-      "Definir medidas finais.",
+      "Confirmar medidas finais das articulações, garra e suportes.",
       "Definir quantidade exata de articulações.",
       "Medir ou estimar força real necessária para raspar a manteiga.",
       "Calcular torque de cada articulação.",
@@ -396,7 +407,13 @@
       "Escolher material estrutural definitivo.",
       "Fazer lista final de compras com preços atuais.",
       "Decidir se os rascunhos e imagens serão adicionados ao repositório."
-    ]
+    ],
+    "anotacoes": {
+      "organizacao_do_projeto": {
+        "parte_1_material_e_mecanica": "Reúne a construção física do robô: cabeça, base, pescoço, braço, garra, faca, estrutura, ventosas, fixações, materiais da carcaça, acabamento e cálculos mecânicos.",
+        "parte_2_eletronica": "Reúne o ESP32, servos, botões, alimentação, fios, conectores, soldagem, programação e demais componentes eletrônicos."
+      }
+    }
   },
   {
     "id": "candies-and-deaths",
