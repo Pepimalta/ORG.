@@ -36,7 +36,8 @@ function montarVisaoGeral(item) {
   document.querySelector("#visao-geral").innerHTML = '<div class="grade-detalhes">' + campos.map(([titulo, valor]) => bloco(titulo, valor)).join("") + "</div>";
 }
 function montarEtapas(item) { const etapas = item.etapas_do_projeto || item.etapas || []; document.querySelector("#etapas").innerHTML = etapas.length ? '<div class="grade-detalhes">' + bloco("Etapas", etapas) + "</div>" : '<p class="sem-registro">Nenhuma etapa registrada.</p>'; }
-function montarMateriais(item) { const materiais = { componentes_planejados:item.componentes_planejados, materiais_esteticos:item.materiais_esteticos, componentes_pesquisados_e_decisoes:item.componentes_pesquisados_e_decisoes, materiais:item.materiais }; document.querySelector("#materiais").innerHTML = '<div class="grade-detalhes">' + Object.entries(materiais).filter(([, valor]) => !valorVazio(valor)).map(([chave, valor]) => bloco(tituloChave(chave), valor)).join("") + "</div>"; }
+function montarMateriais(item) { const materiais = { componentes_planejados:item.componentes_planejados, materiais_esteticos:item.materiais_esteticos, componentes_pesquisados_e_decisoes:item.componentes_pesquisados_e_decisoes, materiais:item.materiais }; document.querySelector("#materiais").innerHTML = '<div class="grade-detalhes">' + Object.entries(materiais).filter(([, valor]) => !valorVazio(valor)).map(([chave, valor]) => bloco(tituloChave(chave), valor)).join("") + "</div>"; instalarPesquisaMateriais(); }
+
 function montarImagens(item) { const imagens = item.imagens_e_rascunhos || item.imagens || []; document.querySelector("#imagens").innerHTML = valorVazio(imagens) ? '<p class="sem-registro">Nenhuma imagem registrada.</p>' : '<div class="grade-detalhes">' + bloco("Imagens e rascunhos", imagens) + "</div>"; }
 function montarAnotacoes(item) { const anotacoes = { decisoes:item.decisoes, pendencias:item.pendencias, ideias_futuras:item.ideias_futuras, forcas_e_mecanica:item.forcas_e_mecanica, anotacoes:item.anotacoes }; document.querySelector("#anotacoes").innerHTML = '<div class="grade-detalhes">' + Object.entries(anotacoes).filter(([, valor]) => !valorVazio(valor)).map(([chave, valor]) => bloco(tituloChave(chave), valor)).join("") + "</div>"; }
 function montarConteudoCompleto(item) {
@@ -163,6 +164,36 @@ function abrirEditor() {
   janela.append(form); document.body.append(janela);
   janela.addEventListener("close",()=>janela.remove(),{once:true});
   janela.showModal();
+}
+
+function instalarPesquisaMateriais() {
+  const pesquisa = document.createElement("section");
+  pesquisa.className = "pesquisa-materiais";
+  pesquisa.innerHTML = `
+    <p class="etiqueta-pesquisa">PESQUISA EXTERNA</p>
+    <h3>Pesquisar materiais</h3>
+    <p>Procure componentes, preços e lojas no Google Shopping. A pesquisa abre em uma nova aba, sem precisar de chave de API.</p>
+    <form class="form-pesquisa-material" id="form-pesquisa-material" action="https://www.google.com/search" method="get" target="_blank" rel="noopener noreferrer">
+      <input type="hidden" name="tbm" value="shop">
+      <label for="pesquisa-material">Material</label>
+      <div class="linha-pesquisa">
+        <input id="pesquisa-material" name="q" type="search" placeholder="Ex.: servo para braço robótico" minlength="2" maxlength="200" required>
+        <button type="submit">Pesquisar na web ↗</button>
+      </div>
+    </form>
+    <p class="nota-precos">Confira o preço, o frete e a loja antes de comprar.</p>`;
+  const form = pesquisa.querySelector("form");
+  const campo = pesquisa.querySelector("#pesquisa-material");
+  campo.addEventListener("input", () => campo.setCustomValidity(""));
+  form.addEventListener("submit", evento => {
+    campo.value = campo.value.trim();
+    if (campo.value.length < 2) {
+      evento.preventDefault();
+      campo.setCustomValidity("Digite pelo menos dois caracteres para pesquisar.");
+      campo.reportValidity();
+    }
+  });
+  document.querySelector("#materiais").prepend(pesquisa);
 }
 
 carregarItem();
