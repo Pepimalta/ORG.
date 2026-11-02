@@ -58,16 +58,66 @@
       "marshboy": "Removido do canon; era uma ideia inicial para o papel atualmente ocupado pela Entidade."
     },
     "etapas_do_projeto": [
-      {"etapa": 1, "nome": "Bíblia do universo", "status": "Em andamento", "descricao": "Consolidar o canon de Candyworld, doces vivos, Mariplos, infecção e antagonistas."},
-      {"etapa": 2, "nome": "Estrutura do Candyworld", "status": "Em andamento", "descricao": "Definir biomas, Rio de Açúcar, PD/PND, estações, lojas, restaurantes, atrações e conexões."},
-      {"etapa": 3, "nome": "Roteiro do Capítulo 1", "status": "Em andamento", "descricao": "Desenvolver o início definitivo com Math no Bioma 64, quiosque, banheiro, retorno e primeiro encontro com Candymen."},
-      {"etapa": 4, "nome": "Design visual dos personagens", "status": "Em andamento", "descricao": "Consolidar desenhos oficiais dos mascotes, infectados, Mariplos, Entidade e protagonista."},
-      {"etapa": 5, "nome": "Mapa do Bioma 64", "status": "Em andamento", "descricao": "Organizar entrada, desembarque, praça de alimentação, lojas e demais áreas do primeiro cenário."},
-      {"etapa": 6, "nome": "Sprites do Math", "status": "Pendente", "descricao": "Definir a aparência final e criar sprites iniciais de perfil para idle, caminhada e corrida."},
-      {"etapa": 7, "nome": "Protótipo jogável", "status": "Pendente", "descricao": "Criar uma fatia curta do Capítulo 1."},
-      {"etapa": 8, "nome": "Sistema de perseguição 2.5D", "status": "Pendente", "descricao": "Prototipar perseguições em perspectiva com zoom e profundidade."},
-      {"etapa": 9, "nome": "Capítulos 2 a 4", "status": "Em definição", "descricao": "Revisar Penguin, the Bird, Candy DJ e Cake Tiger no novo canon."},
-      {"etapa": 10, "nome": "Capítulos 5 e 6", "status": "Em definição", "descricao": "Desenvolver The Variables, perseguição à Entidade, corpo verdadeiro e desfecho."}
+      {
+        "etapa": 1,
+        "nome": "Bíblia do universo",
+        "status": "Em andamento",
+        "descricao": "Consolidar o canon de Candyworld, doces vivos, Mariplos, infecção e antagonistas."
+      },
+      {
+        "etapa": 2,
+        "nome": "Estrutura do Candyworld",
+        "status": "Em andamento",
+        "descricao": "Definir biomas, Rio de Açúcar, PD/PND, estações, lojas, restaurantes, atrações e conexões."
+      },
+      {
+        "etapa": 3,
+        "nome": "Roteiro do Capítulo 1",
+        "status": "Em andamento",
+        "descricao": "Desenvolver o início definitivo com Math no Bioma 64, quiosque, banheiro, retorno e primeiro encontro com Candymen."
+      },
+      {
+        "etapa": 4,
+        "nome": "Design visual dos personagens",
+        "status": "Em andamento",
+        "descricao": "Consolidar desenhos oficiais dos mascotes, infectados, Mariplos, Entidade e protagonista."
+      },
+      {
+        "etapa": 5,
+        "nome": "Mapa do Bioma 64",
+        "status": "Em andamento",
+        "descricao": "Organizar entrada, desembarque, praça de alimentação, lojas e demais áreas do primeiro cenário."
+      },
+      {
+        "etapa": 6,
+        "nome": "Sprites do Math",
+        "status": "Pendente",
+        "descricao": "Definir a aparência final e criar sprites iniciais de perfil para idle, caminhada e corrida."
+      },
+      {
+        "etapa": 7,
+        "nome": "Protótipo jogável",
+        "status": "Pendente",
+        "descricao": "Criar uma fatia curta do Capítulo 1."
+      },
+      {
+        "etapa": 8,
+        "nome": "Sistema de perseguição 2.5D",
+        "status": "Pendente",
+        "descricao": "Prototipar perseguições em perspectiva com zoom e profundidade."
+      },
+      {
+        "etapa": 9,
+        "nome": "Capítulos 2 a 4",
+        "status": "Em definição",
+        "descricao": "Revisar Penguin, the Bird, Candy DJ e Cake Tiger no novo canon."
+      },
+      {
+        "etapa": 10,
+        "nome": "Capítulos 5 e 6",
+        "status": "Em definição",
+        "descricao": "Desenvolver The Variables, perseguição à Entidade, corpo verdadeiro e desfecho."
+      }
     ],
     "materiais": [],
     "imagens_e_rascunhos": {
@@ -99,6 +149,77 @@
       "Desenvolver a sequência completa da morte de Math e o restante do Capítulo 6.",
       "Escolher e configurar a engine definitiva do protótipo.",
       "Criar os sprites iniciais de Math."
-    ]
+    ],
+    "historia": {
+      "titulo": "Candies and Deaths — História",
+      "estado": "Rascunho para revisão de Pepi",
+      "contexto": "Candyworld é uma rede de parques temáticos gigantescos, divididos em 210 biomas artificiais, com lojas, atrações, restaurantes, transporte e mascotes de doces vivos. Antes da tragédia, é um parque que funciona normalmente e recebe visitantes.",
+      "origem_dos_doces_vivos": "Em laboratórios subterrâneos, foram desenvolvidas as Mariplos, flores usadas como estrutura biológica dos doces vivos. Suas sementes crescem dentro de moldes e um preparado com Biovitalita e açúcar derretido participa da ativação. O contato com Fluoruclosamina, porém, provoca mutações.",
+      "origem_da_infeccao": "Nos experimentos iniciais, o uso de Fluoruclosamina gerou um primeiro infectado, posteriormente morto. Mais tarde, o chefe da cozinha colocou Fluoruclosamina no açúcar consumido pelos doces vivos, desencadeando uma infecção em grande escala. A motivação do chefe ainda não foi definida.",
+      "inicio_da_trama": {
+        "data": "8 de outubro de 2018",
+        "local": "Quiosque de café e cupcakes, Bioma 64",
+        "personagem": "Math, funcionário de 24 anos",
+        "acontecimentos": [
+          "Math está trabalhando no quiosque.",
+          "Ele vai ao banheiro e fica algum tempo mexendo no celular.",
+          "Quando retorna, encontra os colegas mortos.",
+          "Ao longe, vê Candymen, o mascote do bioma, terrivelmente deformado pela infecção.",
+          "Candymen já havia percebido Math antes de Math avistá-lo."
+        ]
+      },
+      "capitulos": [
+        {
+          "numero": 1,
+          "titulo": "Candymen",
+          "situacao": "Início estabelecido; restante em desenvolvimento",
+          "historia": "A tragédia é descoberta por Math no Bioma 64, e o primeiro grande perigo é Candymen infectado. Em algum ponto posterior da história, Candymen é curado e se torna aliado de Math; o momento e as circunstâncias ainda precisam ser desenvolvidos."
+        },
+        {
+          "numero": 2,
+          "titulo": "Penguin, the Bird",
+          "situacao": "Antagonista definido; enredo detalhado pendente",
+          "historia": "O antagonista deste capítulo é Penguin, the Bird. Os acontecimentos específicos ainda não foram fixados."
+        },
+        {
+          "numero": 3,
+          "titulo": "Candy DJ",
+          "situacao": "Antagonista definido; enredo detalhado pendente",
+          "historia": "O antagonista deste capítulo é Candy DJ. Os acontecimentos específicos ainda não foram fixados."
+        },
+        {
+          "numero": 4,
+          "titulo": "Cake Tiger",
+          "situacao": "Antagonista definido; enredo detalhado pendente",
+          "historia": "O antagonista deste capítulo é Cake Tiger. Suas habilidades de controle de área se relacionam posteriormente com os poderes assimilados pela Entidade."
+        },
+        {
+          "numero": 5,
+          "titulo": "The Variables",
+          "situacao": "Linha principal planejada",
+          "historia": "Math e Candymen procuram seguir as manifestações da Entidade para descobrir onde fica seu corpo verdadeiro. As Variables são extensões/manifestações da Entidade e a defendem. O objetivo principal não é uma sucessão de batalhas contra cada Variable. O corpo verdadeiro da Entidade fica aproximadamente 20 metros acima do chão."
+        },
+        {
+          "numero": 6,
+          "titulo": "The Entity",
+          "situacao": "Desfecho parcialmente planejado",
+          "historia": "A Entidade tenta expandir e assimilar o mundo, engolindo doces vivos para adquirir suas habilidades, não para se alimentar. Está planejado que Math caia numa armadilha e morra aproximadamente no meio do capítulo: uma semente/flor é introduzida pela boca e cresce dentro dele. Candymen poderá assumir o protagonismo jogável após sua morte; o restante do desfecho não foi definido."
+        }
+      ],
+      "personagens_e_relacoes": {
+        "Math": "Protagonista inicial; funcionário do Candyworld.",
+        "Candymen": "Mascote do Bioma 64; primeiro antagonista infectado, posteriormente curado e aliado.",
+        "The Entity": "Organismo de origem ligada aos experimentos e à infecção, capaz de assimilar habilidades e criar manifestações.",
+        "The Variables": "Extensões da Entidade, usadas também para proteger seu corpo verdadeiro."
+      },
+      "elementos_a_confirmar": [
+        "Motivação do chefe da cozinha para contaminar o açúcar.",
+        "Como e quando Candymen é curado.",
+        "Acontecimentos completos dos capítulos 2, 3 e 4.",
+        "Como Math e Candymen se separam e alternam o controle.",
+        "Detalhes da armadilha e da morte de Math.",
+        "Quem controla o jogador e como termina o capítulo 6."
+      ]
+    }
   }
 ]
